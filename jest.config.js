@@ -15,5 +15,5 @@ module.exports = {
       "node"
     ],
     "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "setupTestFrameworkScriptFile": "<rootDir>/src/test/setupEnzyme.ts",
+    "setupTestFrameworkScriptFile": "<rootDir>/src/__test__/setupEnzyme.ts",
   }

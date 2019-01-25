@@ -3,7 +3,7 @@ export class HistoryService {
     private prev: string;
 
     public add(key: string | undefined) {
-        if (key === undefined) {
+        if (!key) {
             return;
         }
 
@@ -14,8 +14,8 @@ export class HistoryService {
         this.prev = key;
     }
 
-    public isForward(current: string | undefined) {
-        return current && this.history.indexOf(current) > this.history.indexOf(this.prev);
+    public isForward(current: string | undefined): boolean {
+        return !!current && this.history.indexOf(current) > this.history.indexOf(this.prev);
     }
 }
 
