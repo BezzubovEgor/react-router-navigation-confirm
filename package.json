@@ -1,9 +1,38 @@
 {
   "name": "react-router-navigation-confirm",
   "version": "0.1.0",
+  "description": "A collection of components to display a custom confirmation dialog on navigation. More flexible solution to prevent than default react-router 'Prompt'",
   "private": true,
   "main": "lib/index.js",
+  "jsnext:main": "es/index.js",
   "module": "es/index.js",
+  "types": "./lib/index.d.ts",
+  "files": [
+    "es/**/*",
+    "lib/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BezzubovEgor/react-router-navigation-confirm.git"
+  },
+  "keywords": [
+    "confirm",
+    "navigation",
+    "prompt",
+    "react",
+    "router",
+    "user",
+    "getUserConfirmation"
+  ],
+  "author": {
+    "name": "BezzubovEgor",
+    "email": "bezzubov.egor@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BezzubovEgor/react-router-navigation-confirm/issues"
+  },
+  "homepage": "https://github.com/BezzubovEgor/react-router-navigation-confirm/issues#readme",
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "run-s clean build:** copy:**",
@@ -14,7 +43,14 @@
     "clean": "rimraf es lib",
     "test": "jest",
     "eject": "react-scripts-ts eject",
-    "watch": "run-p \"build:** -- --watch\" \"copy:** -- --watch\""
+    "watch": "run-p \"build:** -- --watch\" \"copy:** -- --watch\"",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add .",
+    "postversion": "git push && git push --tags"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.15",
@@ -30,17 +66,18 @@
     "enzyme-to-json": "^3.3.5",
     "jest": "^23.6.0",
     "npm-run-all": "^4.1.5",
+    "prettier": "^1.16.1",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts-ts": "3.1.0",
     "rimraf": "^2.6.3",
     "ts-jest": "^23.10.5",
+    "tslint": "^5.12.1",
     "typescript": "^3.2.4"
   },
   "peerDependencies": {
     "react": ">= 15",
     "react-router-dom": "^4.2.2"
-  },
-  "types": "./lib/index.d.ts"
+  }
 }
