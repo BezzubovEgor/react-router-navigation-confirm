@@ -1,0 +1,46 @@
+{
+  "name": "react-router-navigation-confirm",
+  "version": "0.1.0",
+  "private": true,
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "run-s clean build:** copy:**",
+    "build:lib": "tsc -p tsconfig.build.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "copy:lib": "cpx src/lib/**/*.css lib/",
+    "copy:es": "cpx src/lib/**/*.css es/",
+    "clean": "rimraf es lib",
+    "test": "jest",
+    "eject": "react-scripts-ts eject",
+    "watch": "run-p \"build:** -- --watch\" \"copy:** -- --watch\""
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.15",
+    "@types/enzyme-adapter-react-16": "^1.0.3",
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-router-dom": "^4.3.1",
+    "cpx": "^1.5.0",
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
+    "jest": "^23.6.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.3.1",
+    "react-scripts-ts": "3.1.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.2.4"
+  },
+  "peerDependencies": {
+    "react": ">= 15",
+    "react-router-dom": "^4.2.2"
+  },
+  "types": "./lib/index.d.ts"
+}
