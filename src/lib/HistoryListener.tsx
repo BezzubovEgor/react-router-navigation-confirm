@@ -35,4 +35,5 @@ export class HistoryListener extends React.Component<IProps, IState> {
 }
 
 export type HistoryStoreProps = IProps;
+export type HistoryStoreState = IState;
 export const HistoryListenerWithRouter = withRouter(HistoryListener);

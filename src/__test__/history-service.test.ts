@@ -28,4 +28,14 @@ describe('test history service', () => {
         historyService.add(key);
         expect((historyService as any).history).toEqual([ key ]);
     });
+
+    it('should check if is forward action or not', () => {
+        historyService.add('1');
+        historyService.add('2');
+        historyService.add('3');
+        historyService.add('2'); // prev should be change to 2 but not 2 should not be added
+
+        expect(historyService.isForward('3')).toBeTruthy();
+        expect(historyService.isForward('1')).toBeFalsy();
+    });
 });
