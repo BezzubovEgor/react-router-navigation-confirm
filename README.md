@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-![coverage-branches](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-branches.svg)
+![coverage-branches](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-branches.svg) ![coverage-functions](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-functions.svg) ![coverage-lines](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-lines.svg) ![coverage-statements](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-statements.svg)
 
 ## Table of Contents
 
