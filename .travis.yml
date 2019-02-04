@@ -4,7 +4,6 @@ node_js :
 install:
  - npm install
 script:
- - npm run test:coverage
- - codecov
+ - npm run test:codecov
 before_script:
  - npm run build

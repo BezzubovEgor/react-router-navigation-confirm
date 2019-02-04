@@ -43,6 +43,7 @@
     "clean": "rimraf es",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
+    "test:codecov": "npm run test:coverage && codecov",
     "test:badges": "npm run test:coverage  && jest-coverage-badges output \"./badges\"",
     "eject": "react-scripts-ts eject",
     "watch": "run-p \"build:** -- --watch\" \"copy:** -- --watch\"",
