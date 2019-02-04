@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+![coverage-branches](https://github.com/BezzubovEgor/react-router-navigation-confirm/blob/master/badges/badge-branches.svg)
+
 ## Table of Contents
 
 - [react-router-navigation-confirm](#react-router-navigation-confirm)
