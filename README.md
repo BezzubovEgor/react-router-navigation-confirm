@@ -1,5 +1,7 @@
 # react-router-navigation-confirm
 
+[![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ## Table of Contents
 
 - [react-router-navigation-confirm](#react-router-navigation-confirm)

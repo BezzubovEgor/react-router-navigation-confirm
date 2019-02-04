@@ -20,4 +20,9 @@ module.exports = {
     ],
     "snapshotSerializers": ["enzyme-to-json/serializer"],
     "setupTestFrameworkScriptFile": "<rootDir>/src/__test__/setupEnzyme.ts",
+    "coverageReporters": [
+      "json-summary", 
+      "text",
+      "lcov"
+    ],
   }
