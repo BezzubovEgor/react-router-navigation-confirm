@@ -5,7 +5,7 @@ import { match, withRouter } from 'react-router-dom';
 
 import { HISTORY_SERVICE } from './history-service';
 
-interface IProps {
+export interface IProps {
     unloadMsg?: string;
     history: History;
     children: (data: IChildData) => React.ReactNode;

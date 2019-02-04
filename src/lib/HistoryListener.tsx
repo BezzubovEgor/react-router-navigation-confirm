@@ -5,11 +5,11 @@ import { match, withRouter } from 'react-router-dom';
 
 import { HISTORY_SERVICE } from './history-service';
 
-interface IProps {
+export interface IProps {
     history: History;
     location: Location;
     match: match;
-    children: React.ReactNode;
+    children?: React.ReactNode;
 }
 
 interface IState {
@@ -30,7 +30,7 @@ export class HistoryListener extends React.Component<IProps, IState> {
     }
 
     public render() {
-        return null;
+        return this.props.children === undefined ? null : this.props.children;
     }
 }
 
