@@ -1,6 +1,6 @@
 # react-router-navigation-confirm
 
-[![Build Status](https://travis-ci.org/boennemann/badges.svg?branch=master)](https://travis-ci.org/boennemann/badges) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm/branch/master/graph/badge.svg?token=XAhNiBN2e9)](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm)
+[![Build Status](https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm.svg?branch=master)](https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm/branch/master/graph/badge.svg?token=XAhNiBN2e9)](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm)
 
 ## Table of Contents
 
