@@ -1,6 +1,6 @@
 {
   "name": "react-router-navigation-confirm",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A collection of components to display a custom confirmation dialog on navigation. More flexible solution to prevent than default react-router 'Prompt'",
   "private": false,
   "main": "lib/index.js",
