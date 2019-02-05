@@ -1,3 +1,3 @@
-export * from './HistoryMock';
-export * from './LocationMock';
-export * from './MatchMock';
+export * from "./HistoryMock";
+export * from "./LocationMock";
+export * from "./MatchMock";
