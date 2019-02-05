@@ -9,7 +9,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
+    "rootDir": "src/lib",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -19,9 +19,16 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true
   },
+  "include": [
+    "./src/lib/**/*.tsx",
+    "./src/lib/**/*.ts"
+  ],
   "exclude": [
     "node_modules",
     "build",
+    "docs",
+    "es",
+    "lib",
     "scripts",
     "acceptance-tests",
     "webpack",
