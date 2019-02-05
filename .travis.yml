@@ -12,4 +12,6 @@ deploy:
   email: "YOUR_EMAIL_ADDRESS"
   api_key: "YOUR_AUTH_TOKEN"
   on:
+    tags: true
     branch: master
+    skip_cleanup: true
