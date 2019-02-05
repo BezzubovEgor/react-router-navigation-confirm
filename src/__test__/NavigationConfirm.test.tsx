@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import { shallow, ShallowWrapper } from 'enzyme';
-import { NavigationConfirm, NavigationConfirmProps, NavigationConfirmState, NavigationConfirmChildData, noop } from '../lib/NavigationConfirm';
-import { HistoryMock, LocationMock, MatchMock } from './__mocks__';
 import { HISTORY_SERVICE } from '../lib/history-service';
+import { NavigationConfirm, NavigationConfirmChildData, NavigationConfirmProps, NavigationConfirmState, noop } from '../lib/NavigationConfirm';
+import { HistoryMock, LocationMock, MatchMock } from './__mocks__';
 
 
 describe('<NavigationConfirm/>', () => {
@@ -13,7 +13,7 @@ describe('<NavigationConfirm/>', () => {
     let matchMock: MatchMock;
 
     const childrenText = 'some text';
-    const children = jest.fn(() => childrenText);
+    const children = jest.fn((data: NavigationConfirmChildData) => childrenText);
     const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
 
@@ -139,8 +139,8 @@ describe('<NavigationConfirm/>', () => {
 
     it('should navigate if children call `onConfirm` and close modal on cancel', () => {
         mock.setState({ isOpen: true });
-        
-        const data = children.mock.calls[0][0] as NavigationConfirmChildData;
+
+        const data = children.mock.calls[0][0];
         const navigateSpy = jest.spyOn(mock.instance(), 'navigate');
         const getHistoryFunctionSpy = jest.spyOn(mock.instance(), 'getHistoryFunction');
 
