@@ -1,0 +1,16 @@
+.app_demo {
+    min-height: 100%;
+    flex: auto;
+}
+
+.app_demo__code {
+    color: white;
+    min-height: 100%;
+}
+
+.app_demo__sample {
+}
+
+.app_demo__col {
+    padding: 15px 15px !important;
+}
