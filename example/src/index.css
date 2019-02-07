@@ -1,5 +1,43 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  overflow-y: scroll;
+  color: black;
+}
+
+pre[class*="language-"] {
+  background: white;
+}
+
+.component {
+  color: #1890ff;
+  font-weight: bold;
+}
+
+.text-black {
+  color: black;
+}
+
+code.inline {
+  margin: 0 1px;
+  background: #f2f4f5;
+  padding: .2em .4em;
+  border-radius: 3px;
+  font-size: .9em;
+  border: 1px solid #eee;
+}
+
+h1 {
+  font-size: 30px;
+  line-height: 38px;
+  font-weight: 500;
+  margin-bottom: 20px;
+  margin-top: 8px;
+}
+
+h2 {
+  font-size: 24px;
+  line-height: 32px;
+  margin: 1.6em 0 .6em;
+  font-weight: 500;
 }

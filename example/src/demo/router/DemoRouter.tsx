@@ -7,8 +7,8 @@ const Users = () => <h2>Piu2</h2>;
 
 export const DemoRouter = withRouter(({ match }) => (
     <Switch>
-        <Redirect exact={ true } from={ match.url } to={ `${match.url}/navigaion-confirm-modal/` }/>
-        <Route path={ `${match.url}/navigaion-confirm-modal/` } component={NavigationConfirmModalDemo} />
-        <Route path={ `${match.url}/piu2/` } component={Users} />
+        <Route path={ `${match.url}/navigaion-confirm-modal` } component={NavigationConfirmModalDemo} />
+        <Route path={ `${match.url}/piu2` } component={Users} />
+        <Redirect to={ `${match.url}/navigaion-confirm-modal` }/>
     </Switch>
 ));

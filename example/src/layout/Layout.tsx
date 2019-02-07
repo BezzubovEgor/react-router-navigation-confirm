@@ -13,12 +13,10 @@ export class AppLayout extends React.Component {
             <Layout style={{ minHeight: '100vh' }}>
                 <Header/>
                 <Layout>
+                    <Content/>
                     <SideMenu/>
-                    <Layout>
-                        <Content/>
-                        <Footer/>
-                    </Layout>
                 </Layout>
+                <Footer/>
             </Layout>
             
         );

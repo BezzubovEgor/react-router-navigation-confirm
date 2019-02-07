@@ -1,52 +1,64 @@
 import * as React from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 
-import { Icon, Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd';
 
-export class SideMenu extends React.Component<{}, {}> {
+const routes = [
+    {
+        child: 'NavigationConfirmModal',
+        path: '/demo/navigaion-confirm-modal',
+    }, {
+        child: 'NavigationConfirm',
+        path: '/demo/navigaion-confirm',
+    }, {
+        child: 'HistoryListener',
+        path: '/demo/history-listener',
+    }
+];
+
+class AppMenu extends React.Component<{
+    location: Location,
+}, {}> {
     public state = {
         collapsed: false,
     };
 
     public onCollapse = () => this.setState({ collapsed: !this.state.collapsed });
 
+    public pathnameIncludes = (path: string): boolean => {
+        const splitedPathname = this.props.location.pathname.split('/');
+        const splitedPath = path.split('/');
+
+        for (const item of splitedPath) {
+            if (splitedPathname.indexOf(item) === -1) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public getSelected = () => routes
+        .filter(route => this.pathnameIncludes(route.path))
+        .map(route => route.path);
+
     public render() {
         return (
             <Layout.Sider
+                breakpoint="sm"
                 collapsible={ true }
                 collapsed={ this.state.collapsed }
                 onCollapse={ this.onCollapse }
+                collapsedWidth={ 80 }
+                trigger={ null }
+                width={ 250 }
                 >
-                <div className="logo" />
-                <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                    <Menu.Item key="1">
-                        <Icon type="pie-chart" />
-                        <span>Option 1</span>
-                    </Menu.Item>
-                    <Menu.Item key="2">
-                        <Icon type="desktop" />
-                        <span>Option 2</span>
-                    </Menu.Item>
-                    <Menu.SubMenu
-                        key="sub1"
-                        title={<span><Icon type="user" /><span>User</span></span>}
-                        >
-                        <Menu.Item key="3">Tom</Menu.Item>
-                        <Menu.Item key="4">Bill</Menu.Item>
-                        <Menu.Item key="5">Alex</Menu.Item>
-                    </Menu.SubMenu>
-                    <Menu.SubMenu
-                        key="sub2"
-                        title={<span><Icon type="team" /><span>Team</span></span>}
-                        >
-                        <Menu.Item key="6">Team 1</Menu.Item>
-                        <Menu.Item key="8">Team 2</Menu.Item>
-                    </Menu.SubMenu>
-                    <Menu.Item key="9">
-                        <Icon type="file" />
-                        <span>File</span>
-                    </Menu.Item>
+                <Menu theme="dark" mode="inline" selectedKeys={ this.getSelected() }>
+                    { routes.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.child }</NavLink></Menu.Item>) }
                 </Menu>
             </Layout.Sider>
         );
     }
 }
+
+export const SideMenu = withRouter(AppMenu as any);

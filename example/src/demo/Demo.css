@@ -1,16 +1,26 @@
 .app_demo {
     min-height: 100%;
     flex: auto;
+    background: white;
 }
 
 .app_demo__code {
-    color: white;
-    min-height: 100%;
 }
 
 .app_demo__sample {
+    border-left: 1px dashed #ebedf0;
+    text-align: center;
 }
 
 .app_demo__col {
     padding: 15px 15px !important;
+    overflow: auto;
+    height: 100%;
+}
+
+.app_demo__page {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

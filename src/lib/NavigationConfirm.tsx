@@ -66,8 +66,12 @@ export class NavigationConfirm extends React.Component<IProps, IState> {
         window.removeEventListener('beforeunload', this.onBeforeUnload);
     }
 
+    public isTheSameLocation(nextLocation: Location): boolean {
+        return nextLocation.pathname === this.props.location.pathname;
+    }
+
     public block: TransitionPromptHook = (nextLocation: Location, action: Action): false | void => {
-        if (this.state.isActive) {
+        if (this.state.isActive && !this.isTheSameLocation(nextLocation)) {
             this.setState({ action, nextLocation }, this.open);
             return false;
         }
