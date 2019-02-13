@@ -18,6 +18,10 @@ pre[class*="language-"] {
   color: black;
 }
 
+.text-blackblue {
+  color: #003a8c;
+}
+
 code.inline {
   margin: 0 1px;
   background: #f2f4f5;

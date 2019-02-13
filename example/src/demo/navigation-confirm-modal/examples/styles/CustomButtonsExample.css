@@ -1,0 +1,21 @@
+.btn-class {
+    background: white;
+    border: none;
+    margin: 5px;
+    min-width: 75px;
+    padding: 5px;
+    border-radius: 20px;
+    box-shadow: 0 2px 3px grey;
+    cursor: pointer;
+    outline: none;
+}
+
+.btn-class:hover {
+    box-shadow: 0 3px 6px grey;
+}
+
+.btn-class-confirm {
+    background: #1890ff;
+    font-weight: bold;
+    color: white;
+}

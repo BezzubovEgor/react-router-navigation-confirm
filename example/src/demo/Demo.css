@@ -4,6 +4,10 @@
     background: white;
 }
 
+.app_demo h2.app_demo__header {
+    margin-top: 5px;
+}
+
 .app_demo__code {
 }
 

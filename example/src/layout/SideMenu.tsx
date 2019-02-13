@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 
-import { Layout, Menu } from 'antd';
+import { Affix, Layout, Menu } from 'antd';
 
 const routes = [
     {
@@ -53,9 +53,11 @@ class AppMenu extends React.Component<{
                 trigger={ null }
                 width={ 250 }
                 >
-                <Menu theme="dark" mode="inline" selectedKeys={ this.getSelected() }>
-                    { routes.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.child }</NavLink></Menu.Item>) }
-                </Menu>
+                <Affix offsetTop={ 0 }>
+                    <Menu theme="dark" mode="inline" selectedKeys={ this.getSelected() }>
+                        { routes.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.child }</NavLink></Menu.Item>) }
+                    </Menu>
+                </Affix>
             </Layout.Sider>
         );
     }
