@@ -1,13 +1,9 @@
 import * as React from 'react';
 
-import { Table, Tag } from 'antd';
+import { APITable } from 'src/common';
 
 export const NavigationConfirmModalAPI = () => (
-    <Table
-        size="middle"
-        pagination= { false }
-        bordered={ true }
-        dataSource={[
+    <APITable dataSource={[
             {
                 default: 'Are you sure you want to leave this page?',
                 desc: <div>React element / node to render into the <code className="inline">NavigationConfirmModal</code> component</div>,
@@ -68,35 +64,6 @@ export const NavigationConfirmModalAPI = () => (
                 key: 10,
                 prop: 'buttonConfirmClassName',
                 type: 'string',
-            }
-        ]}
-        columns={[
-            {
-                dataIndex: 'prop',
-                key: 'prop',
-                title: 'Property',
-
-                render: value => <b className="text-blackblue">{ value }</b>,
-            }, {
-                dataIndex: 'desc',
-                key: 'desc',
-                title: 'Description',
-            }, {
-                dataIndex: 'type',
-                key: 'type',
-                title: 'Type',
-
-                render: value => <Tag color="geekblue">{ value }</Tag>,
-            }, {
-                dataIndex: 'default',
-                key: 'default',
-                title: 'Default',
-            }, {
-                dataIndex: 'required',
-                key: 'required',
-                title: 'Required',
-
-                render: value => `${!!value}`,
             }
         ]}
     />

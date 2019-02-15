@@ -118,7 +118,7 @@ ReactDOM.render(
 
 | Property | Description | Default | Type | Required |
 |:---|:---|:---|:---|:---|
-|`children` | function that takes object with `onConfirm` and `onCancel` fields-functions and returns React node to render when user navigate to other page / Route| *no default* | `({ onConfirm: function, onReject: function }) => React.ReactNode;` | *true* |
+|`children` | function that takes object with `onConfirm` and `onCancel` fields-functions and returns React node to render when user navigate to other page / Route| *no default* | `({ onConfirm: function, onCancel: function }) => React.ReactNode;` | *true* |
 |`unloadMsg` | message to show in the confirmation dialog on page unload event (in new versions in browser message alwase takes default messges according browser) | `'msg'` | `string` | *false* |
 
 ## License

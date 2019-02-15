@@ -3,20 +3,9 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import { Affix, Layout, Menu } from 'antd';
 
-const routes = [
-    {
-        child: 'NavigationConfirmModal',
-        path: '/demo/navigaion-confirm-modal',
-    }, {
-        child: 'NavigationConfirm',
-        path: '/demo/navigaion-confirm',
-    }, {
-        child: 'HistoryListener',
-        path: '/demo/history-listener',
-    }
-];
+import { DEMO_ROUTES } from './routes';
 
-class AppMenu extends React.Component<{
+class DemoMenu extends React.Component<{
     location: Location,
 }, {}> {
     public state = {
@@ -38,7 +27,7 @@ class AppMenu extends React.Component<{
         return true;
     }
 
-    public getSelected = () => routes
+    public getSelected = () => DEMO_ROUTES
         .filter(route => this.pathnameIncludes(route.path))
         .map(route => route.path);
 
@@ -47,15 +36,17 @@ class AppMenu extends React.Component<{
             <Layout.Sider
                 breakpoint="sm"
                 collapsible={ true }
+                theme="light"
                 collapsed={ this.state.collapsed }
                 onCollapse={ this.onCollapse }
                 collapsedWidth={ 80 }
                 trigger={ null }
                 width={ 250 }
+                className="app_demo__sider"
                 >
                 <Affix offsetTop={ 0 }>
-                    <Menu theme="dark" mode="inline" selectedKeys={ this.getSelected() }>
-                        { routes.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.child }</NavLink></Menu.Item>) }
+                    <Menu mode="inline" selectedKeys={ this.getSelected() }>
+                        { DEMO_ROUTES.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
                     </Menu>
                 </Affix>
             </Layout.Sider>
@@ -63,4 +54,4 @@ class AppMenu extends React.Component<{
     }
 }
 
-export const SideMenu = withRouter(AppMenu as any);
+export const DemoSideMenu = withRouter(DemoMenu as any);

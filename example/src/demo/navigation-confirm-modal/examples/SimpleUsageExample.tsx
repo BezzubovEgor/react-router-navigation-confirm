@@ -10,9 +10,9 @@ const FirstPage = () => <div className="app_demo__page"><h1>Page #1</h1></div>;
 const SecondPage = () => <div className="app_demo__page"><h1>Page #2</h1></div>;
 const ThirdPage = () => <div className="app_demo__page"><h1>Page #3</h1></div>;
 
-export const SimpleUsageExample = withRouter(({ match, onActivate, activated }: any) => {
+export const SimpleUsageExample = withRouter(({ match }: any) => {
     return (
-        <ExampleBlock { ...{ onActivate, activated } }>
+        <ExampleBlock>
             <p><b>Try to click buttons below to navigate and show navigation confirm dialog...</b></p>
             <Link to={ `${match.url}/1` }><Button shape="round">#1</Button></Link>{' '}
             <Link to={ `${match.url}/2` }><Button shape="round">#2</Button></Link>{' '}

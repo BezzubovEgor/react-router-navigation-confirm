@@ -3,23 +3,28 @@ import * as React from 'react';
 import { Layout, Menu } from 'antd';
 import { NavLink, withRouter } from 'react-router-dom';
 
-const routes = [
-    {
-        child: 'Home',
-        path: '/',
-    }, {
-        child: 'Demo',
-        path: '/demo',
-    }, {
-        child: 'Api',
-        path: '/users',
-    }
-];
+import { ROUTES } from '../router';
 
-export const Header = withRouter(({ location }) => (
-    <Layout.Header>
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }} selectedKeys={[ location.pathname ]}>
-            { routes.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.child }</NavLink></Menu.Item>) }
-        </Menu>
+export const Header = withRouter(({ location, match }) => (
+    <Layout.Header className="header d-flex justify-between">
+        <div className="d-flex justify-start">
+            <div className="logo" />
+            <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }} selectedKeys={ getSecondInPath(location.pathname) }>
+                { ROUTES.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
+            </Menu>
+        </div>
+        <div className="header-links">
+            <a href="https://www.npmjs.com/package/react-router-navigation-confirm" ><i className="devicons devicons-npm"/></a>
+            <a href="https://github.com/BezzubovEgor/react-router-navigation-confirm" ><i className="devicons devicons-github_badge"/></a>
+        </div>
     </Layout.Header>
 ));
+
+function getSecondInPath(pathname: string) {
+    if (!pathname) {
+        return [];
+    }
+
+    const second = pathname.split('/')[1];
+    return second ? [ `/${second}` ] : [ '/' ];
+}

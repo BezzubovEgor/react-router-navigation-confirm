@@ -1,5 +1,8 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": false //Disable for typescript
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",

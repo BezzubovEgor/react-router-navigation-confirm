@@ -2,20 +2,25 @@ import * as React from 'react';
 
 import { Alert, Col, Row } from 'antd';
 
-import { CustomButtonsExample, CustomChildExample, CustomStylesExample, SimpleUsageExample } from './examples';
-import { NavigationConfirmModalAPI } from './NavigationConfirmModalAPI';
+import { HistoryListenerAPI } from './HistoryListenerAPI';
 
 
-export class NavigationConfirmModalDemo extends React.Component {
+export class HistoryListenerDemo extends React.Component {
     public render() {
         return (
             <Row className="app_demo" type="flex" align="middle" justify="center">
                 <Col className="app_demo__code app_demo__col" span={ 20 }>
-                    <h1>NavigationConfirmModal</h1>
-                    <p>Displays modal dialog to confirm or reject navigation.</p>
+                    <h1>NavigationConfirm</h1>
+                    <p>
+                        Displays custom user component to confirm or reject navigation, allows user define more flexible
+                        dialogs instead of react-router <code className="inline">{ '<Promt/>' }</code>.
+                    </p>
 
                     <h2>When to use</h2>
-                    <p>When user needs confirmation on navigation, confirmation on leaving the page or on page reload.</p>
+                    <p>
+                        When user needs confirmation on navigation, confirmation on leaving the page or on page reload
+                        and user want to define his own behaviour for this action and dialog.
+                    </p>
                     <Alert message={
                             <span>
                                 If used with HashRouter then does not support forward browser button, it always will work as back button.
@@ -28,20 +33,8 @@ export class NavigationConfirmModalDemo extends React.Component {
                         type="warning"
                     />
 
-                    <h2>Examples</h2>
-                    <Row gutter={ 16 }>
-                        <Col span={ 12 }>
-                            <SimpleUsageExample/>
-                            <CustomStylesExample/>
-                        </Col>
-                        <Col span={ 12 }>
-                            <CustomChildExample/>
-                            <CustomButtonsExample/>
-                        </Col>
-                    </Row>
-
                     <h2>API</h2>
-                    <NavigationConfirmModalAPI/>
+                    <HistoryListenerAPI/>
                 </Col>
             </Row>
         )

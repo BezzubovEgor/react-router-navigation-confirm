@@ -2,17 +2,10 @@ import * as React from 'react';
 
 import { Alert, Col, Row } from 'antd';
 
-// import { CustomButtonsExample, CustomChildExample, CustomStylesExample, SimpleUsageExample } from './examples';
-// import { NavigationConfirmModalAPI } from './NavigationConfirmModalAPI';
-
+import { UsageExample } from './examples/UsageExample';
+import { NavigationConfirmAPI } from './NavigationConfirmAPI';
 
 export class NavigationConfirmDemo extends React.Component {
-    public state = {
-        activated: null,
-    }
-
-    public activate = (activated: any) => this.setState({ activated });
-
     public render() {
         return (
             <Row className="app_demo" type="flex" align="middle" justify="center">
@@ -41,19 +34,14 @@ export class NavigationConfirmDemo extends React.Component {
                     />
 
                     <h2>Examples</h2>
-                    {/* <Row gutter={ 16 }>
+                    <Row gutter={ 16 }>
                         <Col span={ 12 }>
-                            <SimpleUsageExample onActivate={ this.activate } activated={ this.state.activated }/>
-                            <CustomStylesExample onActivate={ this.activate } activated={ this.state.activated }/>
-                        </Col>
-                        <Col span={ 12 }>
-                            <CustomChildExample onActivate={ this.activate } activated={ this.state.activated }/>
-                            <CustomButtonsExample onActivate={ this.activate } activated={ this.state.activated }/>
+                            <UsageExample/>
                         </Col>
                     </Row>
 
                     <h2>API</h2>
-                    <NavigationConfirmModalAPI/> */}
+                    <NavigationConfirmAPI/>
                 </Col>
             </Row>
         )

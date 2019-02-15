@@ -1,17 +1,19 @@
 import * as React from 'react';
 
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { AppLayout } from './layout/Layout';
+import { ROUTES } from './router';
 
-class App extends React.Component {
-  public render() {
-    return (
-      <Router>
-        <AppLayout/>
-      </Router>
-    );
-  }
-}
+
+const App = () => (
+  <Router>
+    <AppLayout>
+      <Switch>
+        { ROUTES.map(({ path, component }) => component && <Route key={ path } path={ path } component={ component } />) }
+      </Switch>
+    </AppLayout>
+  </Router>
+);
 
 export default App;
