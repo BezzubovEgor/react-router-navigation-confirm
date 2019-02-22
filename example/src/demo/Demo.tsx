@@ -12,7 +12,7 @@ export const Demo = withRouter(({ match }) => (
     <Layout>
         <Layout.Content style={{ display: 'flex' }}>
             <Switch>
-                { DEMO_ROUTES.map(({ path, component }) => component && <Route path={ `${match.url}/${path}` } component={ component } />) }
+                { DEMO_ROUTES.map(({ path, component }) => component && <Route path={ `${match.url}/${path}` } component={ component } key={ path } />) }
                 <Redirect to={ `${match.url}/${DEMO_ROUTES[0].path}` }/>
             </Switch>
         </Layout.Content>

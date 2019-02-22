@@ -12,14 +12,13 @@ export class HistoryListenerDemo extends React.Component {
                 <Col className="app_demo__code app_demo__col" span={ 20 }>
                     <h1>NavigationConfirm</h1>
                     <p>
-                        Displays custom user component to confirm or reject navigation, allows user define more flexible
-                        dialogs instead of react-router <code className="inline">{ '<Promt/>' }</code>.
+                        This component start listen navigation actions of <a href="https://reacttraining.com/react-router/">react-router</a> and
+                        store order of this actions to support back and forward actions in right way.
                     </p>
 
                     <h2>When to use</h2>
                     <p>
-                        When user needs confirmation on navigation, confirmation on leaving the page or on page reload
-                        and user want to define his own behaviour for this action and dialog.
+                        When you need support of back and forward navigation actions.
                     </p>
                     <Alert message={
                             <span>

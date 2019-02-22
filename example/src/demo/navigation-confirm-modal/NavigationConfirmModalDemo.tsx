@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { Alert, Col, Row } from 'antd';
+import { Link } from 'react-router-dom';
 
+import { DEMO_URLS } from '../routes';
 import { CustomButtonsExample, CustomChildExample, CustomStylesExample, SimpleUsageExample } from './examples';
 import { NavigationConfirmModalAPI } from './NavigationConfirmModalAPI';
 
@@ -18,12 +20,8 @@ export class NavigationConfirmModalDemo extends React.Component {
                     <p>When user needs confirmation on navigation, confirmation on leaving the page or on page reload.</p>
                     <Alert message={
                             <span>
-                                If used with HashRouter then does not support forward browser button, it always will work as back button.
-                                <code className="inline">{ '<HashRouter>' }</code> does not add the <code className="inline">key</code>
-                                property to locations but this component use <code className="inline">key</code> to handle navigation directions.
-                                The reason for this is that hash history doesn't use <code className="inline">history.(push|replace)State</code>
-                                to switch the location (it just uses <code className="inline">window.location.replace</code>).
-                            </span>
+                            By default this component does not support forward navigation action (e.g. browser forward button), you can use <code className="inline"><Link to={ `./${DEMO_URLS.historyListener.path}` }>{ '<HistoryListener/>' }</Link></code>.
+                        </span>
                         }
                         type="warning"
                     />
