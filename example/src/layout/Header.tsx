@@ -8,7 +8,12 @@ import { ROUTES } from '../router';
 export const Header = withRouter(({ location, match }) => (
     <Layout.Header className="header d-flex justify-between">
         <div className="d-flex justify-start">
-            <div className="logo" />
+            <div className="brand">
+                <NavLink to="/">
+                    <img className="logo" src="/logo.png"/>
+                    <span>RRND</span>
+                </NavLink>
+            </div>
             <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }} selectedKeys={ getSecondInPath(location.pathname) }>
                 { ROUTES.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
             </Menu>

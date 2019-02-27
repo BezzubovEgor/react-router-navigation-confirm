@@ -46,7 +46,7 @@ class DemoMenu extends React.Component<{
                 >
                 <Affix offsetTop={ 0 }>
                     <Menu mode="inline" selectedKeys={ this.getSelected() }>
-                        { DEMO_ROUTES.map(route => <Menu.Item key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
+                        { DEMO_ROUTES.map(route => <Menu.Item style={{ width: '100%' }} key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
                     </Menu>
                 </Affix>
             </Layout.Sider>

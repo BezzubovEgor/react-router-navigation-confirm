@@ -10,7 +10,7 @@ export class HistoryListenerDemo extends React.Component {
         return (
             <Row className="app_demo" type="flex" align="middle" justify="center">
                 <Col className="app_demo__code app_demo__col" span={ 20 }>
-                    <h1>NavigationConfirm</h1>
+                    <h1>HistoryListener</h1>
                     <p>
                         This component start listen navigation actions of <a href="https://reacttraining.com/react-router/">react-router</a> and
                         store order of this actions to support back and forward actions in right way.

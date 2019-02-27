@@ -42,7 +42,7 @@ export class ExampleBlock extends React.Component<IProps> {
     );
 
 
-    public getShowButton = () => <div style={ { textAlign: 'center' } }><Button type="primary" icon="desktop" onClick={ this.toggleExample }>Show example</Button></div>;
+    public getShowButton = () => <div style={ { textAlign: 'center' } }><Button icon="desktop" size="large" onClick={ this.toggleExample }>Show example</Button></div>;
 
     public toggleExample = () => this.setState({ isExampleOpen: !this.state.isExampleOpen });
 

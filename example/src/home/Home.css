@@ -1,0 +1,26 @@
+.home {
+    background: #FFF !important;
+}
+
+.home h1 {
+    font-weight: 100;
+    font-size: 5rem;
+    line-height: 5rem;
+    letter-spacing: .7rem;
+    text-align: center;
+}
+
+.home .large-logo {
+    margin-top: 5rem;
+}
+
+.home .btn,
+.home .metrics a {
+    margin-left: .5rem;
+    margin-right: .5rem;
+}
+
+.home .section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}

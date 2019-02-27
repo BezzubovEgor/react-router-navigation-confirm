@@ -19,7 +19,7 @@ pre[class*="language-"] {
 }
 
 .text-blackblue {
-  color: #003a8c;
+  color: #04919F;
 }
 
 code.inline {
@@ -46,12 +46,35 @@ h2 {
   font-weight: 500;
 }
 
-.logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255,255,255,.2);
-  margin: 16px 24px 16px 0;
-  /* float: left; */
+.brand {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 38px;
+  letter-spacing: .2em;
+  margin: 10px 25px 10px 0;
+  color: #2AC8AA;
+  transition: color 0.3s;
+  border: 1px solid #FFF;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-image: linear-gradient(20deg,  #384453 20%, #2391A1 33%, #82e3d9);
+  border-image-slice: 1;
+}
+
+.brand a:active,
+.brand a:focus {
+  text-decoration: none;
+}
+
+.brand span {
+  padding-top: 5px;
+}
+
+.brand img {
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  margin: 0 15px 0 0;
 }
 
 .header-links a {
@@ -84,4 +107,75 @@ h2 {
 
 .justify-center {
   justify-content: center;
+}
+
+.ant-layout {
+  background: #FFF;
+}
+
+.p-15px {
+  padding: 15px 15px !important;
+}
+
+
+/* ant design overrides */
+a {
+  color: #2AB8AA;
+}
+
+a:hover,
+a:focus {
+  color: #2391A1;
+}
+
+a:active {
+  color: #169DA8;
+}
+
+.ant-btn:hover,
+.ant-btn:active,
+.ant-btn:focus {
+  color: #2AB8AA;
+  border-color: #2AB8AA;
+}
+
+.ant-btn-primary {
+  background-color: #2AB8AA;
+  border-color: #2AB8AA;
+}
+
+.ant-btn-primary:hover,
+.ant-btn-primary:active,
+.ant-btn-primary:focus {
+    background-color: #2391A1;
+    color: #FFF;
+    border-color: #2391A1;
+}
+
+.ant-menu-item > a:hover {
+  color: #2391A1;
+}
+
+.ant-menu-item:after {
+  border-right: 3px solid #2391A1 !important;
+}
+
+.ant-menu-item-selected > a,
+.ant-menu-item-selected > a:hover {
+  /* font-weight: 500; */
+  color: #2391A1;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background: #eaf8fa;
+}
+
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item:active,
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-image: linear-gradient(to right, #eafaf9, #d5f1f6);
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected {
+  background-color: #2AB8AA;
+  background-image: linear-gradient(to right, #2391A1, #2AB8AA);
 }
