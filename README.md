@@ -7,6 +7,7 @@
 - [react-router-navigation-confirm](#react-router-navigation-confirm)
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
+  - [Demo](#demo)
   - [General Usage](#general-usage)
     - [Basic example](#basic-example)
     - [Custom dialog](#custom-dialog)
@@ -22,6 +23,10 @@ To install this component you can use [npm](https://www.npmjs.com/) or [yarn](ht
 
     $ npm install --save react-router-navigation-confirm
     $ yarn add react-router-navigation-confirm
+
+## Demo
+
+You can see demo and docs on this [site](https://bezzubovegor.github.io/react-router-navigation-confirm).
 
 ## General Usage
 

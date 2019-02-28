@@ -56,7 +56,7 @@
     "version": "npm run format && git add .",
     "postversion": "git push && git push --tags",
     "docs": "rimraf docs && typedoc --out docs src --exclude src/__test__/**/*",
-    "gh-pages": "npm run docs && gh-pages -d docs",
+    "gh-pages": "npm run example:build && gh-pages -d example/build",
     "example:start": "cd ./example && npm start",
     "example:install": "cd ./example && npm install",
     "example:build": "cd ./example && npm run build"

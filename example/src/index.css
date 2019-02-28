@@ -47,22 +47,31 @@ h2 {
 }
 
 .brand {
-  font-weight: 500;
+  font-weight: 100;
   font-size: 18px;
-  line-height: 38px;
   letter-spacing: .2em;
   margin: 10px 25px 10px 0;
   color: #2AC8AA;
   transition: color 0.3s;
   border: 1px solid #FFF;
-  padding-left: 10px;
-  padding-right: 10px;
   border-image: linear-gradient(20deg,  #384453 20%, #2391A1 33%, #82e3d9);
   border-image-slice: 1;
 }
 
+.brand a {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.brand a:hover,
 .brand a:active,
 .brand a:focus {
+  color: #2AC8AA;
   text-decoration: none;
 }
 

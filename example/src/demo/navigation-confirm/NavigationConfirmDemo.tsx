@@ -24,7 +24,7 @@ export const NavigationConfirmDemo = withRouter(({ match }) => (
             </p>
             <Alert message={
                     <span>
-                        By default this component does not support forward navigation action (e.g. browser forward button), you can use <code className="inline"><Link to={ `./${DEMO_URLS.historyListener.path}` }>{ '<HistoryListener/>' }</Link></code>.
+                        By default this component does not support forward navigation action (e.g. browser forward button), you can use <code className="inline"><Link to={ `./${DEMO_URLS.HISTORY_LISTENER.path}` }>{ '<HistoryListener/>' }</Link></code>.
                     </span>
                 }
                 type="warning"

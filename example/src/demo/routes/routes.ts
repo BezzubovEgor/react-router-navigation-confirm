@@ -5,19 +5,19 @@ import { NavigationConfirmModalDemo } from '../navigation-confirm-modal/Navigati
 import { NavigationConfirmDemo } from '../navigation-confirm/NavigationConfirmDemo';
 
 export const DEMO_URLS = {
-    navigaionConfirm: {
+    NAVIGATION_CONFIRM: {
         component: NavigationConfirmDemo,
         path: 'navigaion-confirm',
         title: 'NavigationConfirm',
     },
 
-    navigaionConfirmModal: {
+    NAVIGATION_CONFIRM_MODAL: {
         component: NavigationConfirmModalDemo,
         path: 'navigaion-confirm-modal',
         title: 'NavigationConfirmModal',
     },
 
-    historyListener: {
+    HISTORY_LISTENER: {
         component: HistoryListenerDemo,
         path: 'history-listener',
         title: 'HistoryListener',
@@ -25,7 +25,7 @@ export const DEMO_URLS = {
 }
 
 export const DEMO_ROUTES: IRoute[] = [
-    DEMO_URLS.navigaionConfirm,
-    DEMO_URLS.navigaionConfirmModal,
-    DEMO_URLS.historyListener,
+    DEMO_URLS.NAVIGATION_CONFIRM,
+    DEMO_URLS.NAVIGATION_CONFIRM_MODAL,
+    DEMO_URLS.HISTORY_LISTENER,
 ];

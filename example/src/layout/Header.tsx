@@ -10,8 +10,8 @@ export const Header = withRouter(({ location, match }) => (
         <div className="d-flex justify-start">
             <div className="brand">
                 <NavLink to="/">
-                    <img className="logo" src="/logo.png"/>
-                    <span>RRND</span>
+                    <img className="logo" src={ `${process.env.PUBLIC_URL}/logo.png` }/>
+                    <div>RRND</div>
                 </NavLink>
             </div>
             <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }} selectedKeys={ getSecondInPath(location.pathname) }>
