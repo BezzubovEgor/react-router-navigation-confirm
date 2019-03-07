@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
+import { match as Match, NavLink, withRouter } from 'react-router-dom';
 
 import { Affix, Layout, Menu } from 'antd';
 
@@ -7,6 +7,7 @@ import { DEMO_ROUTES } from './routes';
 
 class DemoMenu extends React.Component<{
     location: Location,
+    match: Match,
 }, {}> {
     public state = {
         collapsed: false,
@@ -32,6 +33,7 @@ class DemoMenu extends React.Component<{
         .map(route => route.path);
 
     public render() {
+        const { match } = this.props;
         return (
             <Layout.Sider
                 breakpoint="sm"
@@ -46,7 +48,7 @@ class DemoMenu extends React.Component<{
                 >
                 <Affix offsetTop={ 0 }>
                     <Menu mode="inline" selectedKeys={ this.getSelected() }>
-                        { DEMO_ROUTES.map(route => <Menu.Item style={{ width: '100%' }} key={ route.path }><NavLink to={ route.path }>{ route.title }</NavLink></Menu.Item>) }
+                        { DEMO_ROUTES.map(route => <Menu.Item style={{ width: '100%' }} key={ route.path }><NavLink to={ `${match.url}/${route.path}` }>{ route.title }</NavLink></Menu.Item>) }
                     </Menu>
                 </Affix>
             </Layout.Sider>
