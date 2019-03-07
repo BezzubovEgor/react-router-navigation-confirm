@@ -119,13 +119,13 @@ ReactDOM.render(
 
 ### **1. `<HistoryListener/>`**
 
-| Property | Description | Default | Type | Default |
+| Property | Description | Default | Type | Required |
 |:---|:---|:---|:---|:---|
 | `children` | React element / node to render into the `HistoryListener` component | `undefined` | `React.ReactNode` | *false* |
 
 ### **2. `<NavigationConfirmModal/>`**
 
-| Property | Description | Default | Type | Default |
+| Property | Description | Default | Type | Required |
 |:---|:---|:---|:---|:---|
 |`children` | React element / node to render into the `NavigationConfirmModal` component | `'Are you sure you want to leave this page?'` | `React.ReactNode` | *false* |
 |`confirmText` | Text for confirm button | `'Confirm'` | `string` | *false* |
