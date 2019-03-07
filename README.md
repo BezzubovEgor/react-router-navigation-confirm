@@ -1,6 +1,26 @@
 # react-router-navigation-confirm
 
-[![Build Status](https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm.svg?branch=master)](https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![codecov](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm/branch/master/graph/badge.svg?token=XAhNiBN2e9)](https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm)
+<p align="center">
+    <a href="https://bezzubovegor.github.io/react-router-navigation-confirm">
+        <img src="https://bezzubovegor.github.io/react-router-navigation-confirm/logo.png" width="120" title="RRNC" alt="RRNC"/>
+    </a>
+</p>
+
+<h2 align="center">
+  React Router Navigation Confirm
+</h2>
+
+<p align="center">
+    <a href="https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm">
+        <img src="https://travis-ci.com/BezzubovEgor/react-router-navigation-confirm.svg?branch=master" alt="Build Status"/>
+    </a>
+    <a href="https://opensource.org/licenses/MIT">
+        <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT"/>
+    </a>
+    <a href="https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm">
+        <img src="https://codecov.io/gh/BezzubovEgor/react-router-navigation-confirm/branch/master/graph/badge.svg?token=XAhNiBN2e9" alt="codecov"/>
+    </a>
+</p>
 
 ## Table of Contents
 
