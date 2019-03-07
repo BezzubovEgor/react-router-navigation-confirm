@@ -1,4 +1,4 @@
-# react-router-navigation-confirm
+#
 
 <p align="center">
     <a href="https://bezzubovegor.github.io/react-router-navigation-confirm">
@@ -24,18 +24,17 @@
 
 ## Table of Contents
 
-- [react-router-navigation-confirm](#react-router-navigation-confirm)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
-  - [Demo](#demo)
-  - [General Usage](#general-usage)
-    - [Basic example](#basic-example)
-    - [Custom dialog](#custom-dialog)
-  - [API](#api)
-    - [**1. `<HistoryListener/>`**](#1-historylistener)
-    - [**2. `<NavigationConfirmModal/>`**](#2-navigationconfirmmodal)
-    - [**3. `<NavigationConfirm/>`**](#3-navigationconfirm)
-  - [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Installation](#installation)
+- [Demo](#demo)
+- [General Usage](#general-usage)
+  - [Basic example](#basic-example)
+  - [Custom dialog](#custom-dialog)
+- [API](#api)
+  - [**1. `<HistoryListener/>`**](#1-historylistener)
+  - [**2. `<NavigationConfirmModal/>`**](#2-navigationconfirmmodal)
+  - [**3. `<NavigationConfirm/>`**](#3-navigationconfirm)
+- [License](#license)
 
 ## Installation
 
