@@ -21,7 +21,7 @@ export const Home = () => (
                 </Col>
             </Row>
             <Row type="flex" align="middle" justify="center">
-                <Link to={ ROUTES_MAP.GET_STARTED.path }><Button className="btn btn-primary" size="large" type="primary">Get started</Button></Link>
+                <Link to={ ROUTES_MAP.GET_STARTED.path }><Button className="btn btn-primary" size="large" type="primary" href="">Get started</Button></Link>
                 <Link to={ ROUTES_MAP.DEMO.path }><Button className="btn" size="large">Live examples & docs</Button></Link>
             </Row>
             <Row type="flex" align="middle" justify="center" className="section metrics">
