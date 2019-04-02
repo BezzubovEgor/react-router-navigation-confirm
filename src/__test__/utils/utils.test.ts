@@ -1,7 +1,7 @@
-import { noop } from '../../lib/utils';
+import { noop } from "../../lib/utils";
 
-describe('Utils tests', () => {
-    it('should invoke empty function', () => {
-        expect(noop()).toBeUndefined();
-    });
-})
+describe("Utils tests", () => {
+  it("should invoke empty function", () => {
+    expect(noop()).toBeUndefined();
+  });
+});

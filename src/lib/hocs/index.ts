@@ -1,3 +1,1 @@
-export {
-    withHistoryService,
-} from './with-history-listener-context';
+export { withHistoryService } from "./with-history-listener-context";

@@ -1,4 +1,4 @@
-import { Action, Location } from 'history';
+import { Action, Location } from "history";
 
 class HistoryService {
   private history: string[] = [];
@@ -24,15 +24,12 @@ class HistoryService {
   }
 
   public getHistoryFunction = (location: Location, action: Action): string => {
-    
     return {
-        POP: () => this.isForward(location.key) ? 'goForward' : 'goBack',
-        PUSH: () => 'push',
-        REPLACE: () => 'replace'
+      POP: () => (this.isForward(location.key) ? "goForward" : "goBack"),
+      PUSH: () => "push",
+      REPLACE: () => "replace"
     }[action]();
-  }
+  };
 }
 
-export {
-  HistoryService,
-}
+export { HistoryService };

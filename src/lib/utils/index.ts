@@ -1,6 +1,5 @@
-function noop() {/* empty function */};
+function noop() {
+  /* empty function */
+}
 
-
-export {
-    noop,
-};
+export { noop };
