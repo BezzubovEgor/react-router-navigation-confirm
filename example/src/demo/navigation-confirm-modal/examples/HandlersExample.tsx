@@ -4,24 +4,22 @@ import { HistoryListener, NavigationConfirmModal } from 'react-router-navigation
 
 import { ExampleBlock, ExampleRoutes } from 'src/common';
 
+export const HandlersExample = () => {
+    const onCancel = () => alert('onCancel handler');
+    const onConfirm = () => alert('onConfirm handler');
 
-export const CustomChildExample = () => {
     return (
         <ExampleBlock>
             <p><b>Try to click buttons below to navigate and show navigation confirm dialog...</b></p>
             <ExampleRoutes />
 
             <ExampleBlock.Code>{ CODE_EXAMPLE }</ExampleBlock.Code>
-            <ExampleBlock.Description>
-                Example of confirmation modal dialog with custom child (body content),
-                you can put your element to the <code className="inline">children</code> prop, or put as child tag.
-            </ExampleBlock.Description>
+            <ExampleBlock.Description><span>Example of <code className="inline">onCancel</code> and <code className="inline">onConfirm</code> handlers</span></ExampleBlock.Description>
 
             <HistoryListener>
-                <NavigationConfirmModal>
-                    <p><b>Custom modal body</b></p>
-                    <p>There are you can define some <span style={ { color: 'red' } }>custom</span> tamplate for modal body</p>
-                </NavigationConfirmModal>
+                <NavigationConfirmModal
+                    onCancel={ onCancel }
+                    onConfirm={ onConfirm }/>
             </HistoryListener>
         </ExampleBlock>
     );
@@ -56,10 +54,9 @@ const App = () => (
              * You can use NavigationConfirmModal component on any route you want
              */
         }
-        <NavigationConfirmModal>
-            <p><b>Custom modal body</b></p>
-            <p>There are you can define some <span style={ { color: 'red' } }>custom</span> tamplate for modal body</p>
-        </NavigationConfirmModal>
+        <NavigationConfirmModal
+            onCancel={ () => alert('onCancel handler') }
+            onConfirm={ () => alert('onConfirm handler') } />
     </div>
 );
 
@@ -73,7 +70,7 @@ ReactDOM.render(
                      * You need to pass History listener to root router component, not to nested routes
                      */
                 }
-            </HistoryListener>
+            </HistoryListener> 
         </div>
     </BrowserRouter>
     , document.getElementById('root')

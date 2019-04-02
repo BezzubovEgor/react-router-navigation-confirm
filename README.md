@@ -32,8 +32,8 @@
   - [Custom dialog](#custom-dialog)
 - [API](#api)
   - [**1. `<HistoryListener/>`**](#1-historylistener)
-  - [**2. `<NavigationConfirmModal/>`**](#2-navigationconfirmmodal)
-  - [**3. `<NavigationConfirm/>`**](#3-navigationconfirm)
+  - [**2. `<NavigationConfirm/>`**](#2-navigationconfirm)
+  - [**3. `<NavigationConfirmModal/>`**](#3-navigationconfirmmodal)
 - [License](#license)
 
 ## Installation
@@ -51,7 +51,7 @@ You can see demo and docs on this [site](https://bezzubovegor.github.io/react-ro
 
 ### Basic example
 
-To show confirmation dialog on every navigation you only need to include `<HistoryListener/>` to the root router of your app and `<NavigationConfirmModal/>` to any Route in which you want to display confirmation dialog:
+To show confirmation dialog on every navigation you only need to include `<HistoryListener/>` provider-component to the root router of your app and `<NavigationConfirmModal/>` to any Route (inside `<HistoryListener>`) in which you want to display confirmation dialog:
 
 ```jsx
 import React from 'react';
@@ -65,7 +65,8 @@ import App from './App';
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <NavigationConfirmModal/>
+            <HistoryListener>
+                <NavigationConfirmModal/>
             <HistoryListener/>
             <App />
         </div>
@@ -74,7 +75,7 @@ ReactDOM.render(
 );
 ```
 
-1. `HistoryListener` - the component which start to listen all changes of history and help to understand when you go forward and when you go back in the navigation (`NavigationConfirmModal` will work even without HistoryListener, but if you click *forward* browser button, it will go back on the history).
+1. `HistoryListener` - the component-provider which start to listen all changes of history and help to understand when you go forward and when you go back in the navigation(`NavigationConfirmModal` and `NavigationConfirm` will not work without HistoryListener).
 
 2. `NavigationConfirmModal` - the component that displays confirmation dialog with to buttons (*Confirm* and *Cancel*) when you try to navigate to other page or Route.
 
@@ -101,10 +102,11 @@ const children = ({ onConfirm, onCancel }) => (
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <HistoryListener/>
-            <NavigationConfirm>
-                { children }
-            </NavigationConfirm>
+            <HistoryListener>
+                <NavigationConfirm>
+                    { children }
+                </NavigationConfirm>
+            </HistoryListener>
             <App />
         </div>
     </BrowserRouter>
@@ -123,11 +125,22 @@ ReactDOM.render(
 |:---|:---|:---|:---|:---|
 | `children` | React element / node to render into the `HistoryListener` component | `undefined` | `React.ReactNode` | *false* |
 
-### **2. `<NavigationConfirmModal/>`**
+### **2. `<NavigationConfirm/>`**
+
+| Property | Description | Default | Type | Required |
+|:---|:---|:---|:---|:---|
+|`children` | function that takes object with `onConfirm` and `onCancel` fields-functions and returns React node to render when user navigate to other page / Route| *no default* | `({ onConfirm: function, onCancel: function }) => React.ReactNode;` | *true* |
+|`unloadMsg` | message to show in the confirmation dialog on page unload event (in new versions in browser message alwase takes default messges according browser) | `'msg'` | `string` | *false* |
+|`when` | condition to render confirmation, you can hide or show dialog by pass `true` or `false`, or create custom behaviour using function | `true` | `boolean | ((location: Location, routeProps: RouteComponentProps) => boolean)` | *false* |
+
+### **3. `<NavigationConfirmModal/>`**
 
 | Property | Description | Default | Type | Required |
 |:---|:---|:---|:---|:---|
 |`children` | React element / node to render into the `NavigationConfirmModal` component | `'Are you sure you want to leave this page?'` | `React.ReactNode` | *false* |
+|`when` | condition to render confirmation, you can hide or show dialog by pass `true` or `false`, or create custom behaviour using function | `true` | `boolean | ((location: Location, routeProps: RouteComponentProps) => boolean)` | *false* |
+|`onCancel` | function to call when user click on cancel button | `undefined` | `() => void` | *false* |
+|`onConfirm` | function to call when user click on confirm button | `undefined` | `() => void` | *false* |
 |`confirmText` | Text for confirm button | `'Confirm'` | `string` | *false* |
 |`cancelText` | Text for cancel button | `'Cancel'` | `string` | *false* |
 |`modalClassName` | modal class name | `'nc-modal'` | `string` | *false* |
@@ -137,13 +150,6 @@ ReactDOM.render(
 |`footerClassName` | class name for modal footer | `'nc-modal__footer'` | `string` | *false* |
 |`buttonClassName` | class name for all modal buttons (applyed for confirm and cancel) | `'nc-modal__button'` | `string` | *false* |
 |`buttonConfirmClassName` | confirm button aditional style | `'confirm'` | `string` | *false* |
-
-### **3. `<NavigationConfirm/>`**
-
-| Property | Description | Default | Type | Required |
-|:---|:---|:---|:---|:---|
-|`children` | function that takes object with `onConfirm` and `onCancel` fields-functions and returns React node to render when user navigate to other page / Route| *no default* | `({ onConfirm: function, onCancel: function }) => React.ReactNode;` | *true* |
-|`unloadMsg` | message to show in the confirmation dialog on page unload event (in new versions in browser message alwase takes default messges according browser) | `'msg'` | `string` | *false* |
 
 ## License
 

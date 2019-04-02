@@ -1,7 +1,9 @@
 import * as React from 'react';
 
 import { Alert, Col, Row } from 'antd';
+import { Link } from 'react-router-dom';
 
+import { DEMO_URLS } from '../routes';
 import { HistoryListenerAPI } from './HistoryListenerAPI';
 
 
@@ -12,13 +14,18 @@ export class HistoryListenerDemo extends React.Component {
                 <Col className="app_demo__code app_demo__col" span={ 20 }>
                     <h1>HistoryListener</h1>
                     <p>
-                        This component start listen navigation actions of <a href="https://reacttraining.com/react-router/">react-router</a> and
+                        This provider-component start listen navigation actions of <a href="https://reacttraining.com/react-router/">react-router</a> and
                         store order of this actions to support back and forward actions in right way.
+                        You shold put <code className="inline">
+                            <Link to={ `./${DEMO_URLS.NAVIGATION_CONFIRM.path}` }>{ '<NavigationConfirm>' }</Link>
+                        </code> or <code className="inline">
+                            <Link to={ `./${DEMO_URLS.NAVIGATION_CONFIRM_MODAL.path}` }>{ '<NavigationConfirmModal>' }</Link>
+                        </code> inside this component.
                     </p>
 
                     <h2>When to use</h2>
                     <p>
-                        When you need support of back and forward navigation actions.
+                        If you want everything to work.
                     </p>
                     <Alert message={
                             <span>

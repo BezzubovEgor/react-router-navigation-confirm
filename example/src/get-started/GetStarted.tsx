@@ -30,9 +30,9 @@ $ yarn add react-router-navigation-confirm`
 
                     <h3>Basic example</h3>
                     <p>
-                        To show confirmation dialog on every navigation you only need to include <code className="inline">{ '<HistoryListener/>' }</code>
+                        To show confirmation dialog on every navigation you only need to include <code className="inline">{ '<HistoryListener/>' }</code> provider-component
                         to the root router of your app and <code className="inline">{ '<NavigationConfirmModal/>' }</code>
-                        to any Route in which you want to display confirmation dialog:
+                        to any Route (inside <code className="inline">{ '<HistoryListener>' }</code>) in which you want to display confirmation dialog:
                     </p>
                     <CodeBlock>
                         {`
@@ -47,9 +47,10 @@ import App from './App';
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <NavigationConfirmModal/>
-            <HistoryListener/>
-            <App />
+            <HistoryListener>
+                <NavigationConfirmModal/>
+                <App />
+            </HistoryListener>
         </div>
     </BrowserRouter>
     , document.getElementById('root')
@@ -79,11 +80,12 @@ const children = ({ onConfirm, onCancel }) => (
 ReactDOM.render(
     <BrowserRouter>
         <div>
-            <HistoryListener/>
-            <NavigationConfirm>
-                { children }
-            </NavigationConfirm>
-            <App />
+            <HistoryListener>
+                <NavigationConfirm when={ true }>
+                    { children }
+                </NavigationConfirm>
+                <App />
+            <HistoryListener>
         </div>
     </BrowserRouter>
     , document.getElementById('root')

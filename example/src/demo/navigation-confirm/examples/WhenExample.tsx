@@ -1,27 +1,31 @@
 import * as React from 'react';
 
+import { Location } from 'history';
 import { HistoryListener, NavigationConfirm } from 'react-router-navigation-confirm';
 
 import { ExampleBlock, ExampleRoutes } from 'src/common';
 import { ConfirmationModal } from '../components';
 
-export const UsageExample = () => {
+
+export const WhenExample = () => {
+    const when = (location: Location) => location.pathname.includes('/1');
+
     return (
         <ExampleBlock>
-            <p><b>Try to click buttons below to navigate and show navigation confirm dialog...</b></p>
+            <p><b>Try to click buttons below to navigate and show navigation confirm dialog, it will work only on page #1...</b></p>
             <ExampleRoutes />
 
             <ExampleBlock.Code>{ CODE_EXAMPLE }</ExampleBlock.Code>
             <ExampleBlock.Description>
-                <p>Navigation confirm usage example.</p>
+                <p>Conditional render example.</p>
                 <p>
-                    You also can put function as prop <code className="inline">children</code> or
-                    simply put it as child element of<code className="inline">{ '<NavigationConfirm/>' }</code>.
+                    You also can put simply <code className="inline">true</code> or <code className="inline">false</code> value
+                    to the <code className="inline">when</code> prop.
                 </p>
             </ExampleBlock.Description>
 
             <HistoryListener>
-                <NavigationConfirm>
+                <NavigationConfirm when={ when }>
                     { ConfirmationModal }
                 </NavigationConfirm>
             </HistoryListener>
@@ -56,7 +60,7 @@ const App = () => (
                 <Redirect to="/1" />
             </Switch>
         </div>
-        <NavigationConfirm>
+        <NavigationConfirm when={ location => location.pathname.includes('/1') }>
             {
                 ({ onConfirm, onCancel }) => (
                     <MyModal>

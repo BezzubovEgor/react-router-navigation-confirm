@@ -1,4 +1,6 @@
-export class HistoryService {
+import { Action, Location } from 'history';
+
+class HistoryService {
   private history: string[] = [];
   private prev: string;
 
@@ -20,6 +22,17 @@ export class HistoryService {
       this.history.indexOf(current) > this.history.indexOf(this.prev)
     );
   }
+
+  public getHistoryFunction = (location: Location, action: Action): string => {
+    
+    return {
+        POP: () => this.isForward(location.key) ? 'goForward' : 'goBack',
+        PUSH: () => 'push',
+        REPLACE: () => 'replace'
+    }[action]();
+  }
 }
 
-export const HISTORY_SERVICE = new HistoryService();
+export {
+  HistoryService,
+}

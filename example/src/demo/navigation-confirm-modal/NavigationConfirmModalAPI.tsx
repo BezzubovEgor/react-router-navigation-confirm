@@ -11,57 +11,78 @@ export const NavigationConfirmModalAPI = () => (
                 prop: 'children',
                 type: 'React.ReactNode',
             }, {
+                default: <code className="inline">true</code>,
+                desc: <div>
+                        condition to render confirmation, you can hide or show dialog by
+                        pass <code className="inline">true</code> or <code className="inline">false</code>, or create custom behaviour using function
+                    </div>,
+                key: 2,
+                prop: 'when',
+                type: 'boolean | ((location: Location, routeProps: RouteComponentProps) => boolean)',
+            }, {
+                default: <code className="inline">undefined</code>,
+                desc: 'function to call when user click on cancel button',
+                key: 3,
+                prop: 'onCancel',
+                type: '() => void',
+            }, {
+                default: <code className="inline">undefined</code>,
+                desc: 'function to call when user click on confirm button',
+                key: 4,
+                prop: 'onConfirm',
+                type: '() => void',
+            }, {
                 default: 'Confirm',
                 desc: 'Text for confirm button',
-                key: 2,
+                key: 5,
                 prop: 'confirmText',
                 type: 'string',
             }, {
                 default: 'Are you sure you want to leave this page?',
                 desc: 'Text for cancel button',
-                key: 3,
+                key: 6,
                 prop: 'cancelText',
                 type: 'string',
             }, {
                 default: 'nc-modal',
                 desc: 'modal class name',
-                key: 4,
+                key: 7,
                 prop: 'modalClassName',
                 type: 'string',
             }, {
                 default: 'nc-modal__backdrop',
                 desc: 'class name for modal backdrop',
-                key: 5,
+                key: 8,
                 prop: 'backdropClassName',
                 type: 'string',
             }, {
                 default: 'nc-modal__content',
                 desc: 'modal content container class name',
-                key: 6,
+                key: 9,
                 prop: 'contentClassName',
                 type: 'string',
             }, {
                 default: 'nc-modal__body',
                 desc: 'class name for modal body container',
-                key: 7,
+                key: 10,
                 prop: 'bodyClassName',
                 type: 'string',
             }, {
                 default: 'nc-modal__footer',
                 desc: 'class name for modal footer',
-                key: 8,
+                key: 11,
                 prop: 'footerClassName',
                 type: 'string',
             }, {
                 default: 'nc-modal__button',
                 desc: 'class name for all modal buttons (applyed for confirm and cancel)',
-                key: 9,
+                key: 12,
                 prop: 'buttonClassName',
                 type: 'string',
             }, {
                 default: 'confirm',
                 desc: 'confirm button aditional style',
-                key: 10,
+                key: 13,
                 prop: 'buttonConfirmClassName',
                 type: 'string',
             }

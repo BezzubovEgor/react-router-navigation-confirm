@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { shallow, ShallowWrapper } from 'enzyme';
-import { NavigationConfirmWithRouter } from '../lib/NavigationConfirm';
-import { NavigationConfirmModal, NavigationConfirmModalProps } from '../lib/NavigationConfirmModal';
+import { NavigationConfirmWithRouter } from '../../lib/components/NavigationConfirm';
+import { NavigationConfirmModal, NavigationConfirmModalProps } from '../../lib/components/NavigationConfirmModal';
 
 
 describe('<NavigationConfirmModal/>', () => {
@@ -18,29 +18,28 @@ describe('<NavigationConfirmModal/>', () => {
     });
 
     it('should render <NavigationConfirmModal/>', () => {
-        const instance = mock.instance() as any;
         const mockModal = shallow(mock.instance().renderModal({ onConfirm, onCancel }));
 
         expect(mock).toHaveLength(1);
         expect(mock.find(NavigationConfirmWithRouter)).toHaveLength(1);
 
         // should render modal
-        expect(mockModal.find(`.${instance.defaultModalClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.modalClassName}`)).toHaveLength(1);
 
         // should render backdrop
-        expect(mockModal.find(`.${instance.defaultBackdropClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.backdropClassName}`)).toHaveLength(1);
 
         // should render body
-        expect(mockModal.find(`.${instance.defaultContentClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${instance.defaultBodyClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${instance.defaultBodyClassName}`).text()).toEqual(instance.defaultChildren);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.contentClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.bodyClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.bodyClassName}`).text()).toEqual(NavigationConfirmModal.defaultProps.children);
         
         // Should render footer with buttons
-        expect(mockModal.find(`.${instance.defaultFooterClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${instance.defaultButtonClassName}`)).toHaveLength(2);
-        expect(mockModal.find(`.${instance.defaultButtonConfirmClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${instance.defaultButtonClassName}`).at(0).text()).toEqual(instance.defaultConfirmText);
-        expect(mockModal.find(`.${instance.defaultButtonClassName}`).at(1).text()).toEqual(instance.defaultCancelText);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.footerClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`)).toHaveLength(2);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonConfirmClassName}`)).toHaveLength(1);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`).at(0).text()).toEqual(NavigationConfirmModal.defaultProps.confirmText);
+        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`).at(1).text()).toEqual(NavigationConfirmModal.defaultProps.cancelText);
 
     });
 

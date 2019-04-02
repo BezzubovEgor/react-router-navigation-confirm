@@ -1,7 +1,11 @@
 export {
-  NavigationConfirmWithRouter as NavigationConfirm
-} from "./NavigationConfirm";
+  NavigationConfirmWithRouter as NavigationConfirm,
+} from './components/NavigationConfirm';
+
 export {
-  HistoryListenerWithRouter as HistoryListener
-} from "./HistoryListener";
-export { NavigationConfirmModal } from "./NavigationConfirmModal";
+  HistoryListenerWithRouter as HistoryListener,
+} from './components/HistoryListener';
+
+export {
+  NavigationConfirmModal,
+} from './components/NavigationConfirmModal';

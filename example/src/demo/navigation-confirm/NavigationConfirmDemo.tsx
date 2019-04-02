@@ -1,14 +1,14 @@
 import * as React from 'react';
 
 import { Alert, Col, Row } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { DEMO_URLS } from '../routes';
-import { UsageExample } from './examples/UsageExample';
+import { UsageExample, WhenExample } from './examples';
 import { NavigationConfirmAPI } from './NavigationConfirmAPI';
 
 
-export const NavigationConfirmDemo = withRouter(({ match }) => (
+export const NavigationConfirmDemo = () => (
     <Row className="app_demo" type="flex" align="middle" justify="center">
         <Col className="app_demo__code app_demo__col" span={ 20 }>
             <h1>NavigationConfirm</h1>
@@ -24,7 +24,8 @@ export const NavigationConfirmDemo = withRouter(({ match }) => (
             </p>
             <Alert message={
                     <span>
-                        By default this component does not support forward navigation action (e.g. browser forward button), you can use <code className="inline"><Link to={ `./${DEMO_URLS.HISTORY_LISTENER.path}` }>{ '<HistoryListener/>' }</Link></code>.
+                        By default this component does not support forward navigation action (e.g. browser forward button), you should
+                        use <code className="inline"><Link to={ `./${DEMO_URLS.HISTORY_LISTENER.path}` }>{ '<HistoryListener/>' }</Link></code>.
                     </span>
                 }
                 type="warning"
@@ -33,12 +34,15 @@ export const NavigationConfirmDemo = withRouter(({ match }) => (
             <h2>Examples</h2>
             <Row gutter={ 16 }>
                 <Col span={ 12 }>
-                    <UsageExample/>
+                    <UsageExample />
+                </Col>
+                <Col span={ 12 }>
+                    <WhenExample />
                 </Col>
             </Row>
 
             <h2>API</h2>
-            <NavigationConfirmAPI/>
+            <NavigationConfirmAPI />
         </Col>
     </Row>
-));
+);

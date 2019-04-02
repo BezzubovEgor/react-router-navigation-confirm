@@ -42,7 +42,7 @@
     "build:es": "tsc -p tsconfig.es.json",
     "copy:lib": "cpx src/lib/**/*.css lib/",
     "copy:es": "cpx src/lib/**/*.css es/",
-    "clean": "rimraf es",
+    "clean": "rimraf es && rimraf lib",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:codecov": "npm run test:coverage && codecov",

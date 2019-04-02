@@ -1,9 +1,16 @@
 import * as React from 'react';
 
 import { shallow, ShallowWrapper } from 'enzyme';
-import { HISTORY_SERVICE } from '../lib/history-service';
-import { NavigationConfirm, NavigationConfirmChildData, NavigationConfirmProps, NavigationConfirmState, noop } from '../lib/NavigationConfirm';
-import { HistoryMock, LocationMock, MatchMock } from './__mocks__';
+import { Location } from 'history';
+
+import {
+    NavigationConfirm,
+    NavigationConfirmProps,
+    NavigationConfirmState,
+} from '../../lib/components/NavigationConfirm';
+import { HistoryService } from '../../lib/services/history-service';
+import { NavigationConfirmChildData } from '../../lib/types';
+import { HistoryMock, LocationMock, MatchMock } from '../__mocks__';
 
 
 describe('<NavigationConfirm/>', () => {
@@ -16,6 +23,7 @@ describe('<NavigationConfirm/>', () => {
     const children = jest.fn((data: NavigationConfirmChildData) => childrenText);
     const addEventListenerSpy = jest.spyOn(window, 'addEventListener');
     const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener');
+    const historyService = new HistoryService();
 
     beforeEach(() => {
         locationMock = new LocationMock();
@@ -26,7 +34,11 @@ describe('<NavigationConfirm/>', () => {
         removeEventListenerSpy.mockClear();
 
         mock = shallow(
-            <NavigationConfirm history={ historyMock } location={ locationMock } match={ matchMock }>
+            <NavigationConfirm
+                history={ historyMock }
+                location={ locationMock }
+                match={ matchMock } 
+                historyService={ historyService } >
                 { children }
             </NavigationConfirm>
         );
@@ -59,38 +71,38 @@ describe('<NavigationConfirm/>', () => {
         expect(historyMock.listen).toHaveBeenCalledWith(mock.instance().reblock);
         expect(addEventListenerSpy).toHaveBeenCalledWith('beforeunload', mock.instance().onBeforeUnload);
 
-        expect(mock.state().unblock).toEqual(historyMock.unblock);
-        expect(mock.state().unlisten).toEqual(historyMock.unlisten);
+        expect(mock.instance().unblock).toEqual(historyMock.unblock);
+        expect(mock.instance().unlisten).toEqual(historyMock.unlisten);
     });
 
     it(`should unsubscribe from history changes, ubblock history and remove
         event 'beforeunload' event listener`, () => {
-        const state = mock.state();
+        const instance = mock.instance();
         const onBeforeUnload = mock.instance().onBeforeUnload;
 
-        expect(state.unblock).toEqual(historyMock.unblock);
-        expect(state.unlisten).toEqual(historyMock.unlisten);
+        expect(instance.unblock).toEqual(historyMock.unblock);
+        expect(instance.unlisten).toEqual(historyMock.unlisten);
 
         mock.unmount();
 
-        expect(state.unblock).toHaveBeenCalled();
-        expect(state.unlisten).toHaveBeenCalled();
+        expect(instance.unblock).toHaveBeenCalled();
+        expect(instance.unlisten).toHaveBeenCalled();
         expect(removeEventListenerSpy).toHaveBeenCalledWith('beforeunload', onBeforeUnload);
     });
 
     it('should listen history and reblock it on some changes', () => {
-        expect(mock.state().unlisten).toEqual(historyMock.unlisten);
+        expect(mock.instance().unlisten).toEqual(historyMock.unlisten);
         expect(historyMock.listen).toHaveBeenCalledWith(mock.instance().reblock);
         const handler = mock.instance().reblock;
 
-        (mock.state().unblock as jest.Mock).mockClear();
+        (mock.instance().unblock as jest.Mock).mockClear();
         (historyMock.block as jest.Mock).mockClear();
 
         handler();
 
-        expect(mock.state().unblock).toHaveBeenCalled();
+        expect(mock.instance().unblock).toHaveBeenCalled();
         expect(historyMock.block).toHaveBeenCalled();
-        expect(mock.state().unblock).toEqual(historyMock.unblock);
+        expect(mock.instance().unblock).toEqual(historyMock.unblock);
         expect(mock.state().isActive).toBeTruthy();
     });
 
@@ -111,6 +123,15 @@ describe('<NavigationConfirm/>', () => {
 
         openSpy.mockClear();
         mock.setState({ isActive: false, isOpen: false });
+        expect(handler(nextLocation, 'PUSH')).toBeUndefined();
+        expect(mock.state().action).toEqual('POP');
+        expect(mock.state().nextLocation).toEqual(nextLocation);
+        expect(mock.state().isOpen).toBeFalsy();
+        expect(openSpy).not.toHaveBeenCalled();
+
+        openSpy.mockClear();
+        mock.setState({ isActive: true, isOpen: false });
+        mock.setProps({ when: false });
         expect(handler(nextLocation, 'PUSH')).toBeUndefined();
         expect(mock.state().action).toEqual('POP');
         expect(mock.state().nextLocation).toEqual(nextLocation);
@@ -142,7 +163,7 @@ describe('<NavigationConfirm/>', () => {
 
         const data = children.mock.calls[0][0];
         const navigateSpy = jest.spyOn(mock.instance(), 'navigate');
-        const getHistoryFunctionSpy = jest.spyOn(mock.instance(), 'getHistoryFunction');
+        const getHistoryFunctionSpy = jest.spyOn(historyService, 'getHistoryFunction');
 
         mock.setState({ action: 'PUSH' });
         historyMock.push.mockClear();
@@ -162,22 +183,26 @@ describe('<NavigationConfirm/>', () => {
         expect(mock.state().isOpen).toBeFalsy();
     });
 
-    it('should test getHistoryFunction', () => {
-        const isForwardSpy = jest.spyOn(HISTORY_SERVICE, 'isForward');
+    it('should test work of when prop', () => {
+        mock.setProps({ when: true });
+        expect(mock.instance().shouldShow()).toBeTruthy();
+        mock.setProps({ when: false });
+        expect(mock.instance().shouldShow()).toBeFalsy();
 
-        const getHistoryFunction = mock.instance().getHistoryFunction;
-        expect(getHistoryFunction(new LocationMock(), 'PUSH')).toEqual('push');
-        expect(getHistoryFunction(new LocationMock(), 'REPLACE')).toEqual('replace');
+        mock.setProps({ when: () => true });
+        expect(mock.instance().shouldShow()).toBeTruthy();
+        mock.setProps({ when: () => false });
+        expect(mock.instance().shouldShow()).toBeFalsy();
 
-        isForwardSpy.mockImplementationOnce(() => true);
-        expect(getHistoryFunction(new LocationMock(), 'POP')).toEqual('goForward');
-
-        isForwardSpy.mockImplementationOnce(() => false);
-        expect(getHistoryFunction(new LocationMock(), 'POP')).toEqual('goBack');
+        mock.setProps({
+            location: { pathname: '/1', key: '', hash: '', search: '', state: {} },
+            when: ({ pathname }: Location) => pathname.includes('/1'), 
+        });
+        expect(mock.instance().shouldShow()).toBeTruthy();
+        mock.setProps({
+            location: { pathname: '/2', key: '', hash: '', search: '', state: {} },
+        });
+        expect(mock.instance().shouldShow()).toBeFalsy();
     });
-
-    it('should test noop', () => {
-        expect(noop()).toBeUndefined();
-    })
 
 });
