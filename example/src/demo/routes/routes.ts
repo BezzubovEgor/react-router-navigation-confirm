@@ -1,8 +1,8 @@
 import { IRoute } from 'src/common/models';
 
-import { HistoryListenerDemo } from '../history-listener/HistoryListenerDemo';
-import { NavigationConfirmModalDemo } from '../navigation-confirm-modal/NavigationConfirmModalDemo';
-import { NavigationConfirmDemo } from '../navigation-confirm/NavigationConfirmDemo';
+import { HistoryListenerDemo } from '../components/HistoryListenerDemo';
+import { NavigationConfirmDemo } from '../components/NavigationConfirmDemo';
+import { NavigationConfirmModalDemo } from '../components/NavigationConfirmModalDemo';
 
 export const DEMO_URLS = {
     NAVIGATION_CONFIRM: {
