@@ -58,22 +58,8 @@ class NavigationConfirm extends React.Component<IProps, IState> {
         window.removeEventListener('beforeunload', this.onBeforeUnload);
     }
 
-    public isTheSameLocation(nextLocation: Location): boolean {
-        return nextLocation.pathname === this.props.location.pathname;
-    }
-
-    public shouldShow = () => {
-        const { when, location, history, match } = this.props;
-        if (typeof when === 'function') {
-            return when(location, { location, history, match });
-        }
-        return when;
-    }
-
     public block: TransitionPromptHook = (nextLocation: Location, action: Action): false | void => {
-        if (this.state.isActive
-                && this.shouldShow()
-                && !this.isTheSameLocation(nextLocation)) {
+        if (this.shouldBlock(nextLocation)) {
             this.setState({ action, nextLocation }, this.open);
             return false;
         }
@@ -97,30 +83,42 @@ class NavigationConfirm extends React.Component<IProps, IState> {
         });
     }
 
-    public onBeforeUnload = (event: any) => {
+    public onBeforeUnload = (event: BeforeUnloadEvent) => {
         const { unloadMsg } = this.props;
         event.preventDefault();
         event.returnValue = unloadMsg;
         return unloadMsg;
     }
 
-    public open = () => this.setState({ isOpen: true });
-    public onConfirm = () => this.navigate();
-    public onCancel = () => this.setState({ isOpen: false });
-
     public render() {
+        const { children } = this.props;
         const { isActive, isOpen, hasError } = this.state;
 
         if (!isActive || !isOpen || hasError) {
             return null;
         }
 
-        return this.props.children({
+        return children({
             onCancel: this.onCancel,
             onConfirm: this.onConfirm,
         });
     }
+
+    private open = () => this.setState({ isOpen: true });
+    private onConfirm = () => this.navigate();
+    private onCancel = () => this.setState({ isOpen: false });
+
+    private isTheSameLocation = (nextLocation: Location): boolean => nextLocation.pathname === this.props.location.pathname;
+    private shouldBlock = (nextLocation: Location): boolean => this.state.isActive && this.shouldShow() && !this.isTheSameLocation(nextLocation);
+    private shouldShow = (): boolean => {
+        const { when, location, history, match } = this.props;
+        if (typeof when === 'function') {
+            return when(location, { location, history, match });
+        }
+        return !!when;
+    }
 }
+
 
 const NavigationConfirmWithRouter = withRouter(withHistoryService(NavigationConfirm));
 
