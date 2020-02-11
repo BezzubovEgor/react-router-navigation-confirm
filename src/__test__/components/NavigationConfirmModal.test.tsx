@@ -105,13 +105,13 @@ describe('<NavigationConfirmModal/>', () => {
         const decoratedFunction = jest.fn();
         const decorate = mock.instance().decorate;
 
-        decorate(undefined)(decoratedFunction)();
+        decorate(decoratedFunction, undefined)();
         expect(hook).not.toHaveBeenCalled();
         expect(decoratedFunction).toHaveBeenCalled();
 
         decoratedFunction.mockClear();
 
-        decorate(hook)(decoratedFunction)();
+        decorate(decoratedFunction, hook)();
         expect(hook).toHaveBeenCalled();
         expect(decoratedFunction).toHaveBeenCalled();
     });

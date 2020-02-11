@@ -111,7 +111,7 @@ describe('<NavigationConfirm/>', () => {
         
         const handler = mock.instance().block;
         const nextLocation = { pathname: '/new-path', search: 'test', state: 'test', hash: 'test' };
-        const openSpy = jest.spyOn(mock.instance(), 'open');
+        const openSpy = jest.spyOn(mock.instance() as any, 'open');
         openSpy.mockClear();
 
         mock.setState({ isActive: true, isOpen: false });
@@ -145,13 +145,13 @@ describe('<NavigationConfirm/>', () => {
         const handler = mock.instance().onBeforeUnload;
         const unloadMsg = 'test message';
         const event = {
-            preventDefault: jest.fn(),
-        }
+            preventDefault: jest.fn()
+        } as any;
 
         expect(handler(event)).toEqual('msg');
         expect(event.preventDefault).toHaveBeenCalled();
 
-        event.preventDefault.mockClear();
+        (event.preventDefault as jest.Mock).mockClear();
         mock.setProps({ unloadMsg })
 
         expect(handler(event)).toEqual(unloadMsg);
@@ -184,25 +184,26 @@ describe('<NavigationConfirm/>', () => {
     });
 
     it('should test work of when prop', () => {
+        const instanceShouldShow = (): boolean => (mock.instance() as any).shouldShow();
         mock.setProps({ when: true });
-        expect(mock.instance().shouldShow()).toBeTruthy();
+        expect(instanceShouldShow()).toBeTruthy();
         mock.setProps({ when: false });
-        expect(mock.instance().shouldShow()).toBeFalsy();
+        expect(instanceShouldShow()).toBeFalsy();
 
         mock.setProps({ when: () => true });
-        expect(mock.instance().shouldShow()).toBeTruthy();
+        expect(instanceShouldShow()).toBeTruthy();
         mock.setProps({ when: () => false });
-        expect(mock.instance().shouldShow()).toBeFalsy();
+        expect(instanceShouldShow()).toBeFalsy();
 
         mock.setProps({
             location: { pathname: '/1', key: '', hash: '', search: '', state: {} },
             when: ({ pathname }: Location) => pathname.includes('/1'), 
         });
-        expect(mock.instance().shouldShow()).toBeTruthy();
+        expect(instanceShouldShow()).toBeTruthy();
         mock.setProps({
             location: { pathname: '/2', key: '', hash: '', search: '', state: {} },
         });
-        expect(mock.instance().shouldShow()).toBeFalsy();
+        expect(instanceShouldShow()).toBeFalsy();
     });
 
 });

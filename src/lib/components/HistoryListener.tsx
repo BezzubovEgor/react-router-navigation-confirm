@@ -25,15 +25,15 @@ class HistoryListener extends React.Component<IProps, {}> {
         this.unlisten();
     }
 
-    public listen: History.LocationListener = (location: Location) => {
-        this.historyService.add(location.key);
+    public listen: History.LocationListener = ({ key }: Location) => {
+        this.historyService.add(key);
     }
 
     public render() {
         const { children } = this.props;
         return (
             <HistoryListenerContext.Provider value={ this.historyService }>
-                { children === undefined ? null : children }
+                { children || null }
             </HistoryListenerContext.Provider>
         );
     }

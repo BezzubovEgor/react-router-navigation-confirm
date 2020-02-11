@@ -40,8 +40,8 @@ class NavigationConfirmModal extends React.Component<IProps, {}> {
         confirmText: 'Confirm',
     }
 
-    public decorate = (hook?: () => void) => {
-        return (fn: () => void) => () => {
+    public decorate = (fn: () => void, hook?: () => void) => {
+        return () => {
             if (hook) {
                 hook();
             }
@@ -75,11 +75,11 @@ class NavigationConfirmModal extends React.Component<IProps, {}> {
                     </div>
                     <div className={ footerClassName }>
                         <button className={ `${buttonClassName} ${buttonConfirmClassName}` }
-                                onClick={ this.decorate(confirmHook)(onConfirm) }>
+                                onClick={ this.decorate(onConfirm, confirmHook) }>
                                 { confirmText }
                         </button>
                         <button className={ buttonClassName }
-                                onClick={ this.decorate(cancelHook)(onCancel) }>
+                                onClick={ this.decorate(onCancel, cancelHook) }>
                                 { cancelText }
                         </button>
                     </div>
