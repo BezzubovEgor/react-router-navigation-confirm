@@ -64,7 +64,7 @@
   "devDependencies": {
     "@types/enzyme": "^3.10.4",
     "@types/enzyme-adapter-react-16": "^1.0.3",
-    "@types/jest": "^23.3.14",
+    "@types/jest": "^25.1.2",
     "@types/node": "^10.17.14",
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
@@ -82,9 +82,9 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^4.3.1",
-    "react-scripts-ts": "^4.0.8",
+    "react-scripts-ts": "^3.1.0",
     "rimraf": "^2.7.1",
-    "ts-jest": "^23.10.5",
+    "ts-jest": "^25.2.0",
     "tslint": "^5.20.1",
     "typedoc": "^0.16.9",
     "typescript": "^3.7.5"
