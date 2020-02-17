@@ -1,6 +1,7 @@
 language : node_js
+version: 1.0
 node_js :
- - stable
+ - "12.13"
 install:
  - npm ci
 script:
@@ -8,6 +9,7 @@ script:
 before_script:
  - npm run build
 deploy:
+  edge: true
   provider: npm
   email: "YOUR_EMAIL_ADDRESS"
   api_key: "YOUR_AUTH_TOKEN"
