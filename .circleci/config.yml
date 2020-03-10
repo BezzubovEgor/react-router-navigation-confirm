@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@1.1.6
 jobs:
-  build-and-test:
+  build:
     executor:
       name: node/default
     steps:
@@ -11,10 +11,23 @@ jobs:
           steps:
             - run: npm ci
             - run: npm run build
-            - run: npm run test:codecov
+  test:
+    executor:
+      name: node/default
+    steps:
+      - run: npm run test:codecov
   deploy:
-    
+    executor:
+      name: node/default
+    steps:
+      - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run: npm publish
 workflows:
     build-and-test:
       jobs:
-        - build-and-test
+        - build
+        - test
+    build-and-deploy:
+      jobs:
+        - build
+        - deploy
