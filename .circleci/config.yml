@@ -26,6 +26,15 @@ jobs:
           at: ~/repo
       - run: npm run test:codecov
 
+  lint:
+    working_directory: ~/repo
+    executor:
+      name: node/default
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run: npm run lint
+
   deploy:
     working_directory: ~/repo
     executor:
@@ -40,12 +49,14 @@ workflows:
     build-test-deploy:
       jobs:
         - build
+        - lint
         - test:
             requires:
               - build
         - deploy:
             requires:
               - test
+              - lint
             filters:
               branches:
                 only:
