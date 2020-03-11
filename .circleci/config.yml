@@ -58,8 +58,7 @@ workflows:
               - test
               - lint
             filters:
-              branches:
-                only:
-                  - master
               tags:
-                only: /v.*/
+                only: /^v.*/
+              branches:
+                ignore: /.*/
