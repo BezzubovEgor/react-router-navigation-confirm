@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@1.1.6
+
 jobs:
   build:
     working_directory: ~/repo
@@ -42,3 +43,18 @@ workflows:
         - test:
             requires:
               - build
+
+    build-and-deploy:
+      jobs:
+        - build
+        - test
+        - deploy:
+            requires:
+              - test
+              - build
+            filters:
+              branches:
+                only:
+                  - master
+              tags:
+                only: /.*/
