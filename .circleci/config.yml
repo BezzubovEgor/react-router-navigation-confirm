@@ -13,8 +13,8 @@ jobs:
             - run: npm ci
             - run: npm run build
             - persist_to_workspace:
-              root: ~/repo
-              paths: .
+                root: ~/repo
+                paths: .
 
   test:
     working_directory: ~/repo
@@ -34,6 +34,7 @@ jobs:
           at: ~/repo
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run: npm publish
+
 workflows:
     build-and-test:
       jobs:
