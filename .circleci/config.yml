@@ -37,14 +37,7 @@ jobs:
       - run: npm publish
 
 workflows:
-    build-and-test:
-      jobs:
-        - build
-        - test:
-            requires:
-              - build
-
-    build-and-deploy:
+    build-test-deploy:
       jobs:
         - build
         - test:
@@ -58,4 +51,4 @@ workflows:
                 only:
                   - master
               tags:
-                only: /.*/
+                only: /v.*/
