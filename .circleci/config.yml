@@ -16,12 +16,10 @@ jobs:
             - persist_to_workspace:
                 root: ~/repo
                 paths: .
-
-      - store_artifacts:
-          path: /lib
-
-      - store_artifacts:
-          path: /es
+            - store_artifacts:
+                path: /lib
+            - store_artifacts:
+                path: /es
 
   test:
     working_directory: ~/repo
