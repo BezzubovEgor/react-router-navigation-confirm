@@ -29,6 +29,8 @@ jobs:
       - attach_workspace:
           at: ~/repo
       - run: npm run test:codecov
+      - store_artifacts:
+          path: ./coverage
 
   lint:
     working_directory: ~/repo
