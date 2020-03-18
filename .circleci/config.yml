@@ -54,33 +54,21 @@ jobs:
       - run: npm publish
 
 workflows:
-    build-test:
-      jobs:
-        - build
-        - lint:
-            requires:
-              - build
-        - test:
-            requires:
-              - build
-
     build-test-deploy:
       jobs:
         - build
         - lint:
             requires:
               - build
-            tags:
+            filters:
+              tags:
                 only: /.*/
-              branches:
-                ignore: /.*/
         - test:
             requires:
               - build
-            tags:
+            filters:
+              tags:
                 only: /.*/
-              branches:
-                ignore: /.*/
         - deploy:
             requires:
               - test
