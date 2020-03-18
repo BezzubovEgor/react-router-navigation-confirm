@@ -31,6 +31,8 @@ jobs:
       - run: npm run test:codecov
       - store_artifacts:
           path: ./coverage
+      - store_test_results:
+          path: ./coverage/clover.xml
 
   lint:
     working_directory: ~/repo
