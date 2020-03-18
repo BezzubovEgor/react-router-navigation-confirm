@@ -56,7 +56,10 @@ jobs:
 workflows:
     build-test-deploy:
       jobs:
-        - build
+        - build:
+            filters:
+              tags:
+                only: /.*/
         - lint:
             requires:
               - build
