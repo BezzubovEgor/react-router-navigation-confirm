@@ -17,6 +17,12 @@ jobs:
                 root: ~/repo
                 paths: .
 
+      - store_artifacts:
+          path: /lib
+
+      - store_artifacts:
+          path: /es
+
   test:
     working_directory: ~/repo
     executor:
