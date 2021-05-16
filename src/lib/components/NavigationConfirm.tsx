@@ -6,7 +6,9 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withHistoryService } from '../hocs';
 import { HistoryService } from '../services';
 import { NavigationConfirmChildren, WhenPropType } from '../types';
-import { noop } from '../utils';
+import { noop, isFunction } from '../utils';
+
+const BEFORE_UNLOAD_EVENT = 'beforeunload';
 
 
 interface IProps extends RouteComponentProps {
@@ -35,10 +37,8 @@ class NavigationConfirm extends React.Component<IProps, IState> {
     public state: IState = {
         isActive: true,
         isOpen: false,
-
         action: 'PUSH',
         nextLocation: { pathname: '/', search: '', state: '', hash: '' },
-
         hasError: false,
     }
 
@@ -49,13 +49,25 @@ class NavigationConfirm extends React.Component<IProps, IState> {
         const { block, listen } = this.props.history;
         this.unblock = block(this.block);
         this.unlisten = listen(this.reblock);
-        window.addEventListener('beforeunload', this.onBeforeUnload);
+        if (this.shouldShow()) {
+            this.listenUnload();
+        }
+    }
+
+    public componentDidUpdate(prevProps: IProps) {
+        if (prevProps.when !== this.props.when) {
+            if (this.shouldShow()) {
+                this.listenUnload();
+            } else {
+                this.removeUnload();
+            }
+        }
     }
 
     public componentWillUnmount() {
         this.unblock();
         this.unlisten();
-        window.removeEventListener('beforeunload', this.onBeforeUnload);
+        this.removeUnload();
     }
 
     public block: TransitionPromptHook = (nextLocation: Location, action: Action): false | void => {
@@ -104,15 +116,17 @@ class NavigationConfirm extends React.Component<IProps, IState> {
         });
     }
 
-    private open = () => this.setState({ isOpen: true });
+    private listenUnload = () => window.addEventListener(BEFORE_UNLOAD_EVENT, this.onBeforeUnload);
+    private removeUnload = () => window.removeEventListener(BEFORE_UNLOAD_EVENT, this.onBeforeUnload);
     private onConfirm = () => this.navigate();
     private onCancel = () => this.setState({ isOpen: false });
+    private open = () => this.setState({ isOpen: true });
 
     private isTheSameLocation = (nextLocation: Location): boolean => nextLocation.pathname === this.props.location.pathname;
     private shouldBlock = (nextLocation: Location): boolean => this.state.isActive && this.shouldShow() && !this.isTheSameLocation(nextLocation);
     private shouldShow = (): boolean => {
         const { when, location, history, match } = this.props;
-        if (typeof when === 'function') {
+        if (isFunction(when)) {
             return when(location, { location, history, match });
         }
         return !!when;

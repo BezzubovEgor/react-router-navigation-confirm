@@ -2,4 +2,8 @@ function noop() {
   /* empty function */
 }
 
-export { noop };
+function isFunction(fn: object | number | string | boolean | undefined | Function): fn is Function {
+  return typeof fn === 'function';
+}
+
+export { noop, isFunction };
