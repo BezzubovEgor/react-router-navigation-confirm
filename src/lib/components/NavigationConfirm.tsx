@@ -6,7 +6,7 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { withHistoryService } from '../hocs';
 import { HistoryService } from '../services';
 import { NavigationConfirmChildren, WhenPropType } from '../types';
-import { noop, isFunction } from '../utils';
+import { isFunction, noop } from '../utils';
 
 const BEFORE_UNLOAD_EVENT = 'beforeunload';
 
@@ -37,8 +37,10 @@ class NavigationConfirm extends React.Component<IProps, IState> {
     public state: IState = {
         isActive: true,
         isOpen: false,
+
         action: 'PUSH',
         nextLocation: { pathname: '/', search: '', state: '', hash: '' },
+
         hasError: false,
     }
 
