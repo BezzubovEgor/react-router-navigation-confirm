@@ -12,19 +12,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [15.x]
-
     steps:
     - uses: actions/checkout@v2
-    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
@@ -33,12 +29,44 @@ jobs:
         restore-keys: |
           ${{ runner.OS }}-node-
           ${{ runner.OS }}-
-        
     - name: npm intall, build and test
       run: |
         npm ci
         npm run build --if-present
         npm run test:codecov
+        npm run lint
+    - name: Save root
+      uses: actions/upload-artifact@v2
+      with:
+          name: root
+          path: ${{ github.workspace }}
+        
+        
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Retrieve saved Docker image
+      uses: actions/download-artifact@v2
+      with:
+        name: root
+        path: ${{ github.workspace }}
+    - name: test
+      run: |
+        npm run test:codecov
+        
+        
+  lint:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Retrieve saved Docker image
+      uses: actions/download-artifact@v2
+      with:
+        name: root
+        path: ${{ github.workspace }}
+    - name: lint
+      run: |
         npm run lint
     
 
