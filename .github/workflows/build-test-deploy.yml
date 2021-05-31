@@ -59,6 +59,11 @@ jobs:
     - name: test
       run: |
         npm run test:codecov
+    - name: Post test covarage
+      uses: romeovs/lcov-reporter-action@v0.2.16
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        lcov-file: ./coverage/lcov.info
     - name: Upload test results
       uses: actions/upload-artifact@v2
       with:
