@@ -26,9 +26,6 @@ jobs:
       with:
         path: ~/.npm
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.OS }}-node-
-          ${{ runner.OS }}-
     - name: npm intall, build and test
       run: |
         npm ci
@@ -48,6 +45,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: Retrieve saved Docker image
       uses: actions/download-artifact@v2
       with:
@@ -62,6 +64,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+    - name: Cache Node.js modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.npm
+        key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: Retrieve saved Docker image
       uses: actions/download-artifact@v2
       with:
