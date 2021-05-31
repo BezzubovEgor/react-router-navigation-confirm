@@ -39,7 +39,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
           name: root
-          path: ${{ github.workspace }}
+          path: |
+            ${{ github.workspace }}
+            !./node_modules
         
         
   test:
