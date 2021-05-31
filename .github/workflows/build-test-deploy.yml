@@ -24,7 +24,9 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
-        path: ~/.npm
+        path: |
+          ~/.npm
+          ./node_modules
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: npm intall, build and test
       run: |
@@ -48,7 +50,9 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
-        path: ~/.npm
+        path: |
+          ~/.npm
+          ./node_modules
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: Retrieve saved Docker image
       uses: actions/download-artifact@v2
@@ -67,7 +71,9 @@ jobs:
     - name: Cache Node.js modules
       uses: actions/cache@v2
       with:
-        path: ~/.npm
+        path: |
+          ~/.npm
+          ./node_modules
         key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
     - name: Retrieve saved Docker image
       uses: actions/download-artifact@v2
