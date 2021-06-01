@@ -68,7 +68,7 @@ jobs:
         with:
             path: ${{ github.workspace }}
       - run: |
-          npm link
+          npm i .
           npm run example:install
           npm run example:build
       - name: Deploy examples to GH Pages 
