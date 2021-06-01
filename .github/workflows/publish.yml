@@ -31,4 +31,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run example:install
-      - run: npm run gh-pages
+      - run: npm run example:build
+      - name: Deploy examples to GH Pages 
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./example/build
