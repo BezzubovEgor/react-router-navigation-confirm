@@ -30,4 +30,5 @@ jobs:
           node-version: 15
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: npm run example:install
       - run: npm run gh-pages
