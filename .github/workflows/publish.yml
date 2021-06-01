@@ -7,7 +7,7 @@ on:
   
 
 jobs:
-  publish-npm:
+  install-and-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,8 +15,37 @@ jobs:
         with:
           node-version: 15
           registry-url: https://registry.npmjs.org/
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
       - run: npm run build
+      - name: Save root
+        uses: actions/upload-artifact@v2
+        with:
+            path: |
+              ${{ github.workspace }}
+              !./node_modules
+
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Download root
+        uses: actions/download-artifact@v2
+        with:
+            path: ${{ github.workspace }}
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
@@ -25,13 +54,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
         with:
-          node-version: 15
-          registry-url: https://registry.npmjs.org/
-      - run: npm ci
-      - run: npm run example:install
-      - run: npm run example:build
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: Download root
+        uses: actions/download-artifact@v2
+        with:
+            path: ${{ github.workspace }}
+      - run: |
+          npm run example:install
+          npm run example:build
       - name: Deploy examples to GH Pages 
         uses: peaceiris/actions-gh-pages@v3
         with:
