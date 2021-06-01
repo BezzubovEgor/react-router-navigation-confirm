@@ -5,6 +5,12 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+  workflow_dispatch:
+    inputs:
+      jobs:
+        description: 'Test scenario tags'
+        required: true
+        default: build, test, lint
 
 jobs:
   build:
