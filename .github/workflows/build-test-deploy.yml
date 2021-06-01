@@ -8,12 +8,13 @@ on:
   workflow_dispatch:
     inputs:
       jobs:
-        description: 'Test scenario tags'
+        description: 'List of jobs to run'
         required: true
-        default: build, test, lint
+        default: 'build, test, lint'
 
 jobs:
   build:
+    if: contains(github.event.inputs.jobs, 'build')
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -48,6 +49,7 @@ jobs:
         
   test:
     needs: build
+    if: contains(github.event.inputs.jobs, 'test')
     runs-on: ubuntu-latest
     steps:
     - name: Cache Node.js modules
@@ -74,6 +76,7 @@ jobs:
         
   lint:
     needs: build
+    if: contains(github.event.inputs.jobs, 'lint')
     runs-on: ubuntu-latest
     steps:
     - name: Cache Node.js modules
