@@ -1,11 +1,9 @@
-import * as React from 'react';
 
 import { Location } from 'history';
 import { HistoryListener, NavigationConfirm } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes, InlineCode } from 'src/common/components';
-import { ConfirmationModal } from './ConfirmationModal';
 
+import { ConfirmationModal } from './ConfirmationModal';
 
 export const WhenExample = () => {
     const when = (location: Location) => location.pathname.includes('/1');

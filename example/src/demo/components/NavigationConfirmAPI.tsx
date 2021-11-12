@@ -1,4 +1,3 @@
-import * as React from 'react';
 
 import { APITable, InlineCode } from 'src/common/components';
 

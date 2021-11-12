@@ -1,6 +1,3 @@
-import * as React from 'react';
-
-import * as Prism from 'prismjs';
 import 'prismjs/components/prism-css';
 import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-markup';
@@ -8,7 +5,8 @@ import 'prismjs/components/prism-tsx';
 import 'prismjs/components/prism-typescript';
 
 import { Divider } from 'antd';
-
+import Prism from 'prismjs';
+import * as React from 'react';
 
 export class CodeBlock extends React.Component<{
     divider?: boolean,

@@ -1,17 +1,15 @@
-import * as React from 'react';
-
 import { Alert, Col, Row } from 'antd';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { InlineCode } from 'src/common/components';
 
-import { InlineCode } from 'src/common/components'
 import { DEMO_URLS } from '../routes';
 import { HistoryListenerAPI } from './HistoryListenerAPI';
-
 
 export class HistoryListenerDemo extends React.Component {
     public render() {
         return (
-            <Row className="app_demo" type="flex" align="middle" justify="center">
+            <Row className="app_demo" align="middle" justify="center">
                 <Col className="app_demo__code app_demo__col" span={ 20 }>
                     <h1>HistoryListener</h1>
                     <p>

@@ -1,7 +1,5 @@
-import * as React from 'react';
 
 import { CodeBlock } from 'src/common/components';
-
 
 export const CustomDialogCode = () => (
     <CodeBlock>

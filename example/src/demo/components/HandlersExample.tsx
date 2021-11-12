@@ -1,9 +1,5 @@
-import * as React from 'react';
-
 import { HistoryListener, NavigationConfirmModal } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes, InlineCode } from 'src/common/components';
-
 
 export const HandlersExample = () => {
     const onCancel = () => alert('onCancel handler');
@@ -74,7 +70,7 @@ ReactDOM.render(
                      * You need to pass History listener to root router component, not to nested routes
                      */
                 }
-            </HistoryListener> 
+            </HistoryListener>
         </div>
     </BrowserRouter>
     , document.getElementById('root')

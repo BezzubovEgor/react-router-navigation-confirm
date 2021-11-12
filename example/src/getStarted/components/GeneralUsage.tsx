@@ -1,9 +1,8 @@
-import * as React from 'react';
 
 import { InlineCode } from 'src/common/components';
+
 import { BasicExampleCode } from './BasicExampleCode';
 import { CustomDialogCode } from './CustomDialogCode';
-
 
 export const GeneralUsage = () => (
     <>

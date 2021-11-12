@@ -1,8 +1,7 @@
-import * as React from 'react';
 
 import { HistoryListener, NavigationConfirm } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes, InlineCode } from 'src/common/components';
+
 import { ConfirmationModal } from './ConfirmationModal';
 
 export const UsageExample = () => {

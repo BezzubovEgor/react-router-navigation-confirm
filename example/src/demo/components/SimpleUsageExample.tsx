@@ -1,9 +1,6 @@
-import * as React from 'react';
 
 import { HistoryListener, NavigationConfirmModal } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes } from 'src/common/components';
-
 
 export const SimpleUsageExample = () => {
     return (
@@ -65,7 +62,7 @@ ReactDOM.render(
                      * You need to pass History listener to root router component, not to nested routes
                      */
                 }
-            </HistoryListener> 
+            </HistoryListener>
         </div>
     </BrowserRouter>
     , document.getElementById('root')

@@ -1,10 +1,8 @@
+import { Affix, Layout, Menu } from 'antd';
 import * as React from 'react';
 import { match as Match, NavLink, withRouter } from 'react-router-dom';
 
-import { Affix, Layout, Menu } from 'antd';
-
 import { DEMO_ROUTES } from '../routes';
-
 
 class DemoMenu extends React.Component<{
     location: Location,

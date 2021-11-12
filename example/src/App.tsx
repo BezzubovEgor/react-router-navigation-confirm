@@ -1,10 +1,7 @@
-import * as React from 'react';
-
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import { AppLayout } from './layout/components/Layout';
 import { ROUTES } from './routes';
-
 
 const App = () => (
   <Router>

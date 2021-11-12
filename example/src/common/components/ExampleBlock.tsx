@@ -1,10 +1,9 @@
+import { EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
+import { Button, Card, Modal } from 'antd';
 import * as React from 'react';
-
-import { Button, Card, Icon, Modal } from 'antd';
 
 import { CodeBlock } from './CodeBlock';
 import { SectionDevider } from './SectionDevider';
-
 
 interface IProps {
     children: React.ReactNode,
@@ -51,9 +50,9 @@ export class ExampleBlock extends React.Component<IProps> {
 
     public showIcon = (show: boolean) => {
         if (show) {
-            return <span>Hide code <Icon type="eye-invisible" /></span>
+            return <span>Hide code <EyeInvisibleOutlined /></span>
         }
-        return <span>Show code <Icon type="eye" /></span>;
+        return <span>Show code <EyeOutlined /></span>;
     };
 
     public renderFooter = () => this.getCode() && (
@@ -74,4 +73,3 @@ export class ExampleBlock extends React.Component<IProps> {
         );
     }
 }
-

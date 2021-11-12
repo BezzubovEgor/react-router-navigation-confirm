@@ -1,10 +1,7 @@
-import * as React from 'react';
-
 import { Layout } from 'antd';
 
 import { Brand } from './Brand';
 import { TopMenu } from './TopMenu';
-
 
 const links = [
     {

@@ -1,7 +1,5 @@
-import * as React from 'react';
 
 import { APITable, InlineCode } from 'src/common/components';
-
 
 export const NavigationConfirmModalAPI = () => (
     <APITable dataSource={[

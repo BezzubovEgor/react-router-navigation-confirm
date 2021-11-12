@@ -1,16 +1,14 @@
-import * as React from 'react';
 
 import { Col, Layout, Row } from 'antd';
-
 import { InlineCode } from 'src/common/components';
+
 import { GeneralUsage } from './GeneralUsage';
 import { Installation } from './Installation';
-
 
 export const GetStarted = () => (
     <Layout>
         <Layout.Content>
-            <Row type="flex" align="middle" justify="center">
+            <Row align="middle" justify="center">
                 <Col span={ 16 } className="p-15px">
                     <h1>Getting Started</h1>
                     <p>
