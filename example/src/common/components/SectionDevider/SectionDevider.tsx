@@ -1,9 +1,6 @@
-import * as React from 'react';
-
-import { Divider } from 'antd';
-
 import './SectionDevider.css';
 
+import { Divider } from 'antd';
 
 export const SectionDevider = ({
     onClick = () => {/* */},

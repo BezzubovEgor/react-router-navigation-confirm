@@ -1,17 +1,14 @@
-import * as React from 'react';
-
 import { Alert, Col, Row } from 'antd';
 import { Link } from 'react-router-dom';
-
 import { InlineCode } from 'src/common/components';
+
 import { DEMO_URLS } from '../routes';
 import { NavigationConfirmAPI } from './NavigationConfirmAPI';
 import { UsageExample } from './UsageExample';
 import { WhenExample } from './WhenExample';
 
-
 export const NavigationConfirmDemo = () => (
-    <Row className="app_demo" type="flex" align="middle" justify="center">
+    <Row className="app_demo" align="middle" justify="center">
         <Col className="app_demo__code app_demo__col" span={ 20 }>
             <h1>NavigationConfirm</h1>
             <p>

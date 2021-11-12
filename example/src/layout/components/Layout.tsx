@@ -1,9 +1,7 @@
-import * as React from 'react';
 
 import { Layout } from 'antd';
 
 import { Header } from './Header';
-
 
 export const AppLayout = ({ children } : any) => (
     <Layout style={{ minHeight: '100vh' }}>
@@ -14,5 +12,5 @@ export const AppLayout = ({ children } : any) => (
             </Layout.Content>
         </Layout>
     </Layout>
-    
+
 );

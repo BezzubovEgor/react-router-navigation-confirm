@@ -1,12 +1,9 @@
-import * as React from 'react';
 
+
+import './CustomButtonsExample.css';
 
 import { HistoryListener, NavigationConfirmModal } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes, InlineCode } from 'src/common/components';
-
-import './CustomButtonsExample.css'
-
 
 export const CustomButtonsExample = () => {
     return (

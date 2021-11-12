@@ -1,13 +1,11 @@
-import * as React from 'react';
+
+import './Demo.css';
 
 import { Layout } from 'antd';
 import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 
 import { DEMO_ROUTES } from '../../routes';
 import { DemoSideMenu } from '../DemoSideMenu';
-
-import './Demo.css';
-
 
 export const Demo = withRouter(({ match }) => (
     <Layout>
@@ -20,4 +18,3 @@ export const Demo = withRouter(({ match }) => (
         <DemoSideMenu/>
     </Layout>
 ));
-

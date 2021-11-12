@@ -1,11 +1,8 @@
-import * as React from 'react';
+
+import './CustomStylesExample.css';
 
 import { HistoryListener, NavigationConfirmModal } from 'react-router-navigation-confirm';
-
 import { ExampleBlock, ExampleRoutes, InlineCode } from 'src/common/components';
-
-import './CustomStylesExample.css'
-
 
 export const CustomStylesExample = () => {
     return (

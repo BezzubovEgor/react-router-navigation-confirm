@@ -1,9 +1,5 @@
-
-import * as React from 'react';
-
 import { Button } from 'antd';
 import { Link, Redirect, Route, Switch, withRouter } from 'react-router-dom';
-
 
 const FirstPage = () => <div className="app_demo__page"><h1>Page #1</h1></div>;
 const SecondPage = () => <div className="app_demo__page"><h1>Page #2</h1></div>;

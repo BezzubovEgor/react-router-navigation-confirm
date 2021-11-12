@@ -1,7 +1,5 @@
-import * as React from 'react';
 
 import { APITable } from 'src/common/components';
-
 
 export const HistoryListenerAPI = () => (
     <APITable dataSource={[

@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-import {Table, Tag} from 'antd';
+import { Table, Tag } from 'antd';
 import { TableProps } from 'antd/lib/table';
 
 export const APITable = (props: TableProps<any>) => (
