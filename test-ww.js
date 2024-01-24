@@ -1,3 +1,3 @@
 console.log('Hello from WW')
 
-fetch('/api/hello').then(res => res.json()).then(data => console.log('LOG', JSON.stringify(data)))
+fetch('https://pokeapi.co/api/v2/pokemon-species/aegislash').then(res => res.json()).then(data => console.log('LOG', JSON.stringify(data)))
