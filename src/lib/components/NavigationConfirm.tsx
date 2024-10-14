@@ -124,7 +124,7 @@ class NavigationConfirm extends React.Component<IProps, IState> {
     private onCancel = () => this.setState({ isOpen: false });
     private open = () => this.setState({ isOpen: true });
 
-    private isTheSameLocation = (nextLocation: Location): boolean => nextLocation.pathname === this.props.location.pathname;
+    private isTheSameLocation = (nextLocation: Location): boolean => nextLocation.pathname === this.props.location.pathname && nextLocation.search === this.props.location.search;
     private shouldBlock = (nextLocation: Location): boolean => this.state.isActive && this.shouldShow() && !this.isTheSameLocation(nextLocation);
     private shouldShow = (): boolean => {
         const { when, location, history, match } = this.props;
