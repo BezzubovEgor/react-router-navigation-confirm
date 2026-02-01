@@ -1,6 +1,4 @@
-import { match } from "react-router-dom";
-
-export class MatchMock implements match {
+export class MatchMock {
   public constructor(
     public isExact = true,
     public params = {},

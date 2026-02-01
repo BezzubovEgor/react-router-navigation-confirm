@@ -1,5 +1,6 @@
 import { HistoryService } from "../../lib/services/history-service";
 import { LocationMock } from "../__mocks__";
+import { Action } from "history";
 
 describe("test history service", () => {
   let historyService: HistoryService;
@@ -48,16 +49,16 @@ describe("test history service", () => {
 
     const location = new LocationMock();
 
-    expect(historyService.getHistoryFunction(location, "PUSH")).toEqual("push");
-    expect(historyService.getHistoryFunction(location, "REPLACE")).toEqual(
+    expect(historyService.getHistoryFunction(location as any, "PUSH" as Action)).toEqual("push");
+    expect(historyService.getHistoryFunction(location as any, "REPLACE" as Action)).toEqual(
       "replace"
     );
 
     expect(
-      historyService.getHistoryFunction({ ...location, key: "3" }, "POP")
+      historyService.getHistoryFunction({ ...location, key: "3" } as any, "POP" as Action)
     ).toEqual("goForward");
     expect(
-      historyService.getHistoryFunction({ ...location, key: "1" }, "POP")
+      historyService.getHistoryFunction({ ...location, key: "1" } as any, "POP" as Action)
     ).toEqual("goBack");
   });
 });

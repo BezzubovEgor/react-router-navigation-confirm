@@ -3,10 +3,8 @@ function noop() {
 }
 
 function isFunction(
-  // tslint:disable-next-line
-  fn: object | number | string | boolean | undefined | Function
-  // tslint:disable-next-line
-): fn is Function {
+  fn: unknown
+): fn is (...args: any[]) => any {
   return typeof fn === "function";
 }
 

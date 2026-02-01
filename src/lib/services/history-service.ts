@@ -24,11 +24,12 @@ class HistoryService {
   }
 
   public getHistoryFunction = (location: Location, action: Action): string => {
-    return {
+    const actions: Record<string, () => string> = {
       POP: () => (this.isForward(location.key) ? "goForward" : "goBack"),
       PUSH: () => "push",
       REPLACE: () => "replace"
-    }[action]();
+    };
+    return actions[action]();
   };
 }
 
