@@ -19,7 +19,7 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
   const context = useContext(NavigationContext);
   const navigator = context ? context.navigator : null;
 
-  const shouldBlock = useCallback((nextLoc: any) => {
+  const shouldBlock = useCallback((_nextLoc: any) => {
     if (confirmed) return false;
     
     if (isFunction(when)) {
@@ -47,8 +47,8 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
   let blocker: any = null;
   try {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    blocker = useBlocker(({ nextLocation: nextLoc }) => shouldBlock(nextLoc));
-  } catch (e) {
+    blocker = useBlocker(({ nextLocation: _nextLoc }) => shouldBlock(_nextLoc));
+  } catch {
     // Not in a data router
   }
 

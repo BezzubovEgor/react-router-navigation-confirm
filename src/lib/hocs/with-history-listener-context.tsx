@@ -10,11 +10,13 @@ type WithoutHistoryServiceProsComponent<P extends HistoryServiceComponentProps> 
 function withHistoryService<P extends HistoryServiceComponentProps>(
   Component: ComponentType<P>
 ): WithoutHistoryServiceProsComponent<P> {
-  return (props: any) => (
+  const WithHistoryService = (props: any) => (
     <HistoryListenerContext.Consumer>
         {value => <Component {...props} historyService={value} />}
     </HistoryListenerContext.Consumer>
   );
+  WithHistoryService.displayName = `withHistoryService(${Component.displayName || Component.name || 'Component'})`;
+  return WithHistoryService;
 }
 
 
