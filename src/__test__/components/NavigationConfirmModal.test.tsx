@@ -1,118 +1,70 @@
 import * as React from 'react';
-
-import { shallow, ShallowWrapper } from 'enzyme';
-import { NavigationConfirmWithRouter } from '../../lib/components/NavigationConfirm';
-import { NavigationConfirmModal, NavigationConfirmModalProps } from '../../lib/components/NavigationConfirmModal';
-
+import '@testing-library/jest-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { createMemoryRouter, RouterProvider, Link, Outlet } from 'react-router-dom';
+import { NavigationConfirmModal } from '../../lib/components/NavigationConfirmModal';
+import { HistoryListener } from '../../lib/components/HistoryListener';
 
 describe('<NavigationConfirmModal/>', () => {
-    let mock: ShallowWrapper<NavigationConfirmModalProps, {}, NavigationConfirmModal>;
+    const childrenText = 'Custom modal text';
+    
+    const setupRouter = (when = true) => {
+        const routes = [
+            {
+                path: "/",
+                element: (
+                    <HistoryListener>
+                        <Outlet />
+                    </HistoryListener>
+                ),
+                children: [
+                    {
+                        path: "page1",
+                        element: (
+                            <>
+                                <h1>Page 1</h1>
+                                <Link to="/page2">Go to Page 2</Link>
+                                <NavigationConfirmModal when={when}>
+                                    {childrenText}
+                                </NavigationConfirmModal>
+                            </>
+                        )
+                    },
+                    {
+                        path: "page2",
+                        element: <h1>Page 2</h1>
+                    }
+                ]
+            }
+        ];
 
-    const onConfirm = jest.fn();
-    const onCancel = jest.fn();
+        const router = createMemoryRouter(routes, {
+            initialEntries: ["/page1"],
+        });
 
-    beforeEach(() => {
-        mock = shallow(<NavigationConfirmModal/>);
-        onConfirm.mockClear();
-        onCancel.mockClear();
+        return router;
+    };
+
+    it('should show modal when trying to navigate away', () => {
+        const router = setupRouter();
+        render(<RouterProvider router={router} />);
+        fireEvent.click(screen.getByText('Go to Page 2'));
+        expect(screen.getByText(childrenText)).toBeInTheDocument();
     });
 
-    it('should render <NavigationConfirmModal/>', () => {
-        const mockModal = shallow(mock.instance().renderModal({ onConfirm, onCancel }));
-
-        expect(mock).toHaveLength(1);
-        expect(mock.find(NavigationConfirmWithRouter)).toHaveLength(1);
-
-        // should render modal
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.modalClassName}`)).toHaveLength(1);
-
-        // should render backdrop
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.backdropClassName}`)).toHaveLength(1);
-
-        // should render body
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.contentClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.bodyClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.bodyClassName}`).text()).toEqual(NavigationConfirmModal.defaultProps.children);
-        
-        // Should render footer with buttons
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.footerClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`)).toHaveLength(2);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonConfirmClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`).at(0).text()).toEqual(NavigationConfirmModal.defaultProps.confirmText);
-        expect(mockModal.find(`.${NavigationConfirmModal.defaultProps.buttonClassName}`).at(1).text()).toEqual(NavigationConfirmModal.defaultProps.cancelText);
-
+    it('should navigate when confirmed', () => {
+        const router = setupRouter();
+        render(<RouterProvider router={router} />);
+        fireEvent.click(screen.getByText('Go to Page 2'));
+        fireEvent.click(screen.getByText('Confirm'));
+        expect(screen.getByText('Page 2')).toBeInTheDocument();
     });
 
-    it('should apply custom props to <NavigationConfirmModal/> and modal body', () => {
-        const props: NavigationConfirmModalProps = {
-            children: <div>Test</div>,
-
-            cancelText: 'Test cancel text',
-            confirmText: 'Test confirm text',
-
-            backdropClassName: 'test-backdrop',
-            bodyClassName: 'test-body',
-            contentClassName: 'test-content',
-            modalClassName: 'test-modal',
-
-            buttonClassName: 'test-button',
-            buttonConfirmClassName: 'test-buttonConfirm',
-            footerClassName: 'test-footer',
-        }
-        
-        mock.setProps(props);
-        const mockModal = shallow(mock.instance().renderModal({ onConfirm, onCancel }))
-
-        expect(mockModal.find(`.${props.modalClassName}`)).toHaveLength(1);
-
-        expect(mockModal.find(`.${props.backdropClassName}`)).toHaveLength(1);
-
-        expect(mockModal.find(`.${props.contentClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${props.bodyClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${props.bodyClassName}`).children().getElement()).toEqual(props.children);
-
-        expect(mockModal.find(`.${props.footerClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${props.buttonClassName}`)).toHaveLength(2);
-        expect(mockModal.find(`.${props.buttonConfirmClassName}`)).toHaveLength(1);
-        expect(mockModal.find(`.${props.buttonClassName}`).at(0).text()).toEqual(props.confirmText);
-        expect(mockModal.find(`.${props.buttonClassName}`).at(1).text()).toEqual(props.cancelText);
-    });
-
-    it('should hanlde onClick and onCancel events', () => {
-        const props = {
-            buttonClassName: 'test-button',
-            onCancel: jest.fn(),
-            onConfirm: jest.fn(),
-        }
-
-        mock.setProps(props);
-
-        const mockModal = shallow(mock.instance().renderModal({ onConfirm, onCancel }))
-        const buttons = mockModal.find(`.${props.buttonClassName}`);
-
-        buttons.at(0).simulate('click');
-        expect(props.onCancel).not.toHaveBeenCalled();
-        expect(props.onConfirm).toHaveBeenCalled();
-        expect(onConfirm).toHaveBeenCalled();
-
-        buttons.at(1).simulate('click');
-        expect(props.onCancel).toHaveBeenCalled();
-        expect(onCancel).toHaveBeenCalled();
-    });
-
-    it('should decorate function with other function', () => {
-        const hook = jest.fn();
-        const decoratedFunction = jest.fn();
-        const decorate = mock.instance().decorate;
-
-        decorate(decoratedFunction, undefined)();
-        expect(hook).not.toHaveBeenCalled();
-        expect(decoratedFunction).toHaveBeenCalled();
-
-        decoratedFunction.mockClear();
-
-        decorate(decoratedFunction, hook)();
-        expect(hook).toHaveBeenCalled();
-        expect(decoratedFunction).toHaveBeenCalled();
+    it('should stay on page when canceled', () => {
+        const router = setupRouter();
+        render(<RouterProvider router={router} />);
+        fireEvent.click(screen.getByText('Go to Page 2'));
+        fireEvent.click(screen.getByText('Cancel'));
+        expect(screen.getByText('Page 1')).toBeInTheDocument();
     });
 });

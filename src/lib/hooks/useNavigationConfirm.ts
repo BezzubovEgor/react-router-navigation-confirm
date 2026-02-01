@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState, useContext } from 'react';
-import { useLocation, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
+import { useLocation, UNSAFE_NavigationContext as NavigationContext, useBlocker } from 'react-router-dom';
 import { isFunction } from '../utils';
 import { WhenPropType } from '../types';
 
@@ -16,7 +16,8 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
   const [confirmed, setConfirmed] = useState(false);
 
   const location = useLocation();
-  const { navigator } = useContext(NavigationContext);
+  const context = useContext(NavigationContext);
+  const navigator = context ? context.navigator : null;
 
   const shouldBlock = useCallback((nextLoc: any) => {
     if (confirmed) return false;
@@ -42,9 +43,24 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
     return () => window.removeEventListener('beforeunload', handleBeforeUnload);
   }, [when, unloadMsg]);
 
-  // Handle RR6 Blocker
+  // Try to use Data Router Blocker if available
+  let blocker: any = null;
+  try {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    blocker = useBlocker(({ nextLocation: nextLoc }) => shouldBlock(nextLoc));
+  } catch (e) {
+    // Not in a data router
+  }
+
   useEffect(() => {
-    if (confirmed) return;
+    if (blocker && blocker.state === 'blocked' && !isOpen) {
+      setIsOpen(true);
+    }
+  }, [blocker, isOpen]);
+
+  // Fallback for non-data routers (legacy/UNSAFE approach)
+  useEffect(() => {
+    if (blocker || confirmed || !navigator || !('block' in navigator)) return;
 
     const unblock = (navigator as any).block((tx: any) => {
       if (shouldBlock(tx.location)) {
@@ -56,20 +72,26 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
     });
 
     return unblock;
-  }, [navigator, shouldBlock, confirmed]);
+  }, [navigator, shouldBlock, confirmed, blocker]);
 
   const onConfirm = useCallback(() => {
+    if (blocker && blocker.proceed) {
+      blocker.proceed();
+    }
     setConfirmed(true);
     setIsOpen(false);
     if (nextLocation) {
       nextLocation.retry();
     }
-  }, [nextLocation]);
+  }, [nextLocation, blocker]);
 
   const onCancel = useCallback(() => {
+    if (blocker && blocker.reset) {
+      blocker.reset();
+    }
     setIsOpen(false);
     setNextLocation(null);
-  }, []);
+  }, [blocker]);
 
   return {
     isActive: !!when,
