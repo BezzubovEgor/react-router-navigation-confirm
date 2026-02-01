@@ -1,5 +1,20 @@
-export { NavigationConfirmWithRouter as NavigationConfirm } from "./components/NavigationConfirm";
+export {
+  NavigationConfirm,
+  NavigationConfirmWithRouter,
+  NavigationConfirmProps
+} from "./components/NavigationConfirm";
 
-export { HistoryListenerWithRouter as HistoryListener } from "./components/HistoryListener";
+export {
+  HistoryListener,
+  HistoryListenerWithRouter,
+  HistoryListenerContext
+} from "./components/HistoryListener";
 
-export { NavigationConfirmModal } from "./components/NavigationConfirmModal";
+export {
+  NavigationConfirmModal,
+  NavigationConfirmModalProps
+} from "./components/NavigationConfirmModal";
+
+export { useNavigationConfirm } from "./hooks/useNavigationConfirm";
+
+export * from "./types";

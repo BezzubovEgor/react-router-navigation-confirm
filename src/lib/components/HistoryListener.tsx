@@ -1,49 +1,28 @@
 import * as React from 'react';
-
-import { History, Location } from 'history';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-
+import { useEffect, useContext, useRef } from 'react';
+import { useLocation, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
 import { HistoryService } from '../services';
-import { noop } from '../utils';
 
+export const HistoryListenerContext = React.createContext<HistoryService | undefined>(undefined);
 
-const HistoryListenerContext = React.createContext<HistoryService | undefined>(undefined);
-
-interface IProps extends RouteComponentProps {
+interface HistoryListenerProps {
     children?: React.ReactNode;
 }
 
-class HistoryListener extends React.Component<IProps, {}> {
-    public historyService = new HistoryService();
-    public unlisten: () => void = noop;
+export const HistoryListener: React.FC<HistoryListenerProps> = ({ children }) => {
+    const historyService = useRef(new HistoryService()).current;
+    const location = useLocation();
+    const { navigator } = useContext(NavigationContext);
 
-    public componentDidMount() {
-        this.unlisten = this.props.history.listen(this.listen)
-    }
+    useEffect(() => {
+        historyService.add((location as any).key);
+    }, [location, historyService]);
 
-    public componentWillUnmount() {
-        this.unlisten();
-    }
+    return (
+        <HistoryListenerContext.Provider value={historyService}>
+            {children || null}
+        </HistoryListenerContext.Provider>
+    );
+};
 
-    public listen: History.LocationListener = ({ key }: Location) => {
-        this.historyService.add(key);
-    }
-
-    public render() {
-        const { children } = this.props;
-        return (
-            <HistoryListenerContext.Provider value={ this.historyService }>
-                { children || null }
-            </HistoryListenerContext.Provider>
-        );
-    }
-}
-
-const HistoryListenerWithRouter = withRouter(HistoryListener);
-
-export {
-    HistoryListener,
-    HistoryListenerWithRouter,
-    HistoryListenerContext,
-    IProps as HistoryStoreProps,
-}
+export const HistoryListenerWithRouter = HistoryListener;

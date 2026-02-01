@@ -2,6 +2,7 @@ module.exports = {
     "roots": [
       "<rootDir>/src"
     ],
+    "testEnvironment": "jsdom",
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
@@ -18,8 +19,6 @@ module.exports = {
       "json",
       "node"
     ],
-    "snapshotSerializers": ["enzyme-to-json/serializer"],
-    "setupFilesAfterEnv": ["<rootDir>/src/__test__/setupEnzyme.ts"],
     "coverageReporters": [
       "json-summary",
       "text",
