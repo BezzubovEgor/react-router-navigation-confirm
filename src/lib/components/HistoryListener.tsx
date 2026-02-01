@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useEffect, useContext, useRef } from 'react';
-import { useLocation, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { HistoryService } from '../services';
 
 export const HistoryListenerContext = React.createContext<HistoryService | undefined>(undefined);
@@ -10,9 +10,8 @@ interface HistoryListenerProps {
 }
 
 export const HistoryListener: React.FC<HistoryListenerProps> = ({ children }) => {
-    const historyService = useRef(new HistoryService()).current;
+    const historyService = React.useMemo(() => new HistoryService(), []);
     const location = useLocation();
-    const { navigator } = useContext(NavigationContext);
 
     useEffect(() => {
         historyService.add((location as any).key);

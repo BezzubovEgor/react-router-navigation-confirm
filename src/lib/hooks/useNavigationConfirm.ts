@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState, useContext } from 'react';
-import { useLocation, useNavigate, useNavigationType, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
-import { HistoryListenerContext } from '../components/HistoryListener';
+import { useLocation, UNSAFE_NavigationContext as NavigationContext } from 'react-router-dom';
 import { isFunction } from '../utils';
 import { WhenPropType } from '../types';
 
@@ -17,15 +16,12 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
   const [confirmed, setConfirmed] = useState(false);
 
   const location = useLocation();
-  const navigate = useNavigate();
-  const historyService = useContext(HistoryListenerContext);
   const { navigator } = useContext(NavigationContext);
 
   const shouldBlock = useCallback((nextLoc: any) => {
     if (confirmed) return false;
     
     if (isFunction(when)) {
-      // In RR6 we don't have match easily here, but we can pass location
       return when(location as any, { location } as any);
     }
     return !!when;
@@ -39,6 +35,7 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
         event.returnValue = unloadMsg;
         return unloadMsg;
       }
+      return undefined;
     };
 
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -46,8 +43,6 @@ export const useNavigationConfirm = (when: WhenPropType = true, unloadMsg: strin
   }, [when, unloadMsg]);
 
   // Handle RR6 Blocker
-  // Note: useBlocker is only available in Data Routers (6.4+)
-  // For non-data routers, we have to use UNSAFE_NavigationContext
   useEffect(() => {
     if (confirmed) return;
 

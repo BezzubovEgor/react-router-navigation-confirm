@@ -1,6 +1,3 @@
-import { Location } from "history";
-import { RouteComponentProps } from "react-router";
-
 import { HistoryService } from "./services/history-service";
 
 interface IHistoryServiceComponentProps {
